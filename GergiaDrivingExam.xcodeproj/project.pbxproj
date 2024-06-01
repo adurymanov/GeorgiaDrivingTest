@@ -800,6 +800,8 @@
 		966DF0AA2C0B95D500A08E65 /* CategoriesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0A92C0B95D500A08E65 /* CategoriesScreen.swift */; };
 		966DF0AC2C0B95DD00A08E65 /* CategoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0AB2C0B95DD00A08E65 /* CategoryScreen.swift */; };
 		966DF0AE2C0B95E800A08E65 /* TicketScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0AD2C0B95E800A08E65 /* TicketScreen.swift */; };
+		966DF0B02C0B9F4B00A08E65 /* LessonTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0AF2C0B9F4B00A08E65 /* LessonTaskScreen.swift */; };
+		966DF0B42C0BC63700A08E65 /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0B32C0BC63700A08E65 /* OptionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1597,6 +1599,8 @@
 		966DF0A92C0B95D500A08E65 /* CategoriesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesScreen.swift; sourceTree = "<group>"; };
 		966DF0AB2C0B95DD00A08E65 /* CategoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScreen.swift; sourceTree = "<group>"; };
 		966DF0AD2C0B95E800A08E65 /* TicketScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketScreen.swift; sourceTree = "<group>"; };
+		966DF0AF2C0B9F4B00A08E65 /* LessonTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonTaskScreen.swift; sourceTree = "<group>"; };
+		966DF0B32C0BC63700A08E65 /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2484,6 +2488,7 @@
 				966DF0A22C0B94B800A08E65 /* CategoryCell.swift */,
 				966DF0A42C0B94C000A08E65 /* TicketCell.swift */,
 				966DF0A62C0B94C600A08E65 /* AnswerCell.swift */,
+				966DF0B32C0BC63700A08E65 /* OptionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2494,6 +2499,7 @@
 				966DF0A92C0B95D500A08E65 /* CategoriesScreen.swift */,
 				966DF0AB2C0B95DD00A08E65 /* CategoryScreen.swift */,
 				966DF0AD2C0B95E800A08E65 /* TicketScreen.swift */,
+				966DF0AF2C0B9F4B00A08E65 /* LessonTaskScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -3351,7 +3357,9 @@
 				966DF0AA2C0B95D500A08E65 /* CategoriesScreen.swift in Sources */,
 				966DF0A52C0B94C000A08E65 /* TicketCell.swift in Sources */,
 				966DF0942C0A8B0900A08E65 /* CategoryDTO.swift in Sources */,
+				966DF0B42C0BC63700A08E65 /* OptionCell.swift in Sources */,
 				966DF09B2C0B8F2100A08E65 /* Ticket.swift in Sources */,
+				966DF0B02C0B9F4B00A08E65 /* LessonTaskScreen.swift in Sources */,
 				966DEA6D2C0A835000A08E65 /* GergiaDrivingExamApp.swift in Sources */,
 				966DF09F2C0B8F2F00A08E65 /* Answer.swift in Sources */,
 				966DF0922C0A8AF800A08E65 /* TicketDTO.swift in Sources */,

@@ -11,7 +11,7 @@ final class Ticket: Identifiable {
     
     var rightAnswer: Int
     
-    var imageName: String
+    var imageName: String?
     
     var explanation: String
     
