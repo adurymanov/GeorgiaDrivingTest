@@ -11,6 +11,8 @@ struct LessonTaskScreen: View {
     
     @State private var selectedOption: IndexedOption?
     
+    @State private var helpTicket: Ticket?
+    
     let ticket: Ticket
     
     var body: some View {
@@ -36,13 +38,15 @@ struct LessonTaskScreen: View {
             }
         }
         .navigationTitle("#\(ticket.id)")
+        .sheet(item: $helpTicket) { ticket in
+            NavigationStack {
+                LessonTaskHelpScreen(ticket: ticket)
+            }
+        }
     }
     
     private var imageUrl: URL? {
-        guard let imageName = ticket.imageName else {
-            return nil
-        }
-        return Bundle.main.url(forResource: imageName, withExtension: "jpeg")
+        ticket.imageUrl
     }
     
     private var options: [IndexedOption] {
@@ -101,7 +105,7 @@ struct LessonTaskScreen: View {
     
     private var helpButtonView: some View {
         Button {
-            
+            helpTicket = ticket
         } label: {
             Label("Help", systemImage: "questionmark.circle")
         }
@@ -158,7 +162,7 @@ struct LessonTaskScreen: View {
         ],
         rightAnswer: 1,
         imageName: "154",
-        explanation: "explanation",
+        explanation: "Согласно подпункта 1 пункта «Б.Д» статьи 20 Закона Грузии «О дорожном движении» участники дорожного движения имеют право на получение первой помощи, спасательной и иной помощи от государственных органов и органов местного самоуправления, уполномоченных закона, а также от иных уполномоченных лиц.Во время дорожно-транспортного происшествия.",
         score: 100
     )
     

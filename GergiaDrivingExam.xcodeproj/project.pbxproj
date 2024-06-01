@@ -802,6 +802,8 @@
 		966DF0AE2C0B95E800A08E65 /* TicketScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0AD2C0B95E800A08E65 /* TicketScreen.swift */; };
 		966DF0B02C0B9F4B00A08E65 /* LessonTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0AF2C0B9F4B00A08E65 /* LessonTaskScreen.swift */; };
 		966DF0B42C0BC63700A08E65 /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0B32C0BC63700A08E65 /* OptionCell.swift */; };
+		966DF0B62C0BCF6500A08E65 /* LessonTaskHelpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0B52C0BCF6500A08E65 /* LessonTaskHelpScreen.swift */; };
+		966DF0B92C0BCFF900A08E65 /* Ticket+ImageURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0B82C0BCFF900A08E65 /* Ticket+ImageURL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1601,6 +1603,8 @@
 		966DF0AD2C0B95E800A08E65 /* TicketScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketScreen.swift; sourceTree = "<group>"; };
 		966DF0AF2C0B9F4B00A08E65 /* LessonTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonTaskScreen.swift; sourceTree = "<group>"; };
 		966DF0B32C0BC63700A08E65 /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
+		966DF0B52C0BCF6500A08E65 /* LessonTaskHelpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonTaskHelpScreen.swift; sourceTree = "<group>"; };
+		966DF0B82C0BCFF900A08E65 /* Ticket+ImageURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ticket+ImageURL.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1633,6 +1637,7 @@
 		966DEA6B2C0A835000A08E65 /* GergiaDrivingExam */ = {
 			isa = PBXGroup;
 			children = (
+				966DF0B72C0BCFE900A08E65 /* Extensions */,
 				966DF0A82C0B95BF00A08E65 /* Screens */,
 				966DF0A02C0B949200A08E65 /* Views */,
 				966DF0952C0B8EFF00A08E65 /* DataModel */,
@@ -2500,8 +2505,17 @@
 				966DF0AB2C0B95DD00A08E65 /* CategoryScreen.swift */,
 				966DF0AD2C0B95E800A08E65 /* TicketScreen.swift */,
 				966DF0AF2C0B9F4B00A08E65 /* LessonTaskScreen.swift */,
+				966DF0B52C0BCF6500A08E65 /* LessonTaskHelpScreen.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		966DF0B72C0BCFE900A08E65 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				966DF0B82C0BCFF900A08E65 /* Ticket+ImageURL.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3353,6 +3367,7 @@
 				966DF09D2C0B8F2800A08E65 /* Lesson.swift in Sources */,
 				966DF0AE2C0B95E800A08E65 /* TicketScreen.swift in Sources */,
 				966DF0972C0B8F1100A08E65 /* TicketsByCategory.swift in Sources */,
+				966DF0B62C0BCF6500A08E65 /* LessonTaskHelpScreen.swift in Sources */,
 				966DEA6F2C0A835000A08E65 /* ContentView.swift in Sources */,
 				966DF0AA2C0B95D500A08E65 /* CategoriesScreen.swift in Sources */,
 				966DF0A52C0B94C000A08E65 /* TicketCell.swift in Sources */,
@@ -3366,6 +3381,7 @@
 				966DF0A72C0B94C600A08E65 /* AnswerCell.swift in Sources */,
 				966DF0AC2C0B95DD00A08E65 /* CategoryScreen.swift in Sources */,
 				966DF0992C0B8F1A00A08E65 /* Category.swift in Sources */,
+				966DF0B92C0BCFF900A08E65 /* Ticket+ImageURL.swift in Sources */,
 				966DF0A32C0B94B800A08E65 /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
