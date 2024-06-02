@@ -9,11 +9,36 @@ struct LessonTaskScreen: View {
         let value: String
     }
     
+    enum NavigationTrigger {
+        case next(ticket: Ticket, answer: Answer)
+        case skip(ticket: Ticket)
+    }
+    
+    struct Data: Hashable {
+        let ticket: Ticket
+        let answer: Answer?
+    }
+    
+    @Environment(\.modelContext) private var modelContext
+    
     @State private var selectedOption: IndexedOption?
     
     @State private var helpTicket: Ticket?
     
     let ticket: Ticket
+    
+    let answer: Answer?
+    
+    let navigate: (NavigationTrigger) -> Void
+    
+    init(
+        data: Data,
+        navigate: @escaping (NavigationTrigger) -> Void
+    ) {
+        self.ticket = data.ticket
+        self.answer = data.answer
+        self.navigate = navigate
+    }
     
     var body: some View {
         VStack(spacing: .zero) {
@@ -30,6 +55,11 @@ struct LessonTaskScreen: View {
                 nextButtonView
             } else {
                 skipButtonView
+            }
+        }
+        .task {
+            if let answer {
+                selectedOption = options.first(where: { $0.index == answer.givenAnswer })
             }
         }
         .toolbar {
@@ -124,11 +154,21 @@ struct LessonTaskScreen: View {
     }
     
     private func skipTicket() {
-        
+        navigate(.skip(ticket: ticket))
     }
     
     private func nextTicket() {
+        guard let selectedOption else { return }
         
+        let answer = Answer(
+            id: UUID().uuidString,
+            date: .now,
+            givenAnswer: selectedOption.index
+        )
+        modelContext.insert(answer)
+        answer.ticket = ticket
+        
+        navigate(.next(ticket: ticket, answer: answer))
     }
     
 }
@@ -136,22 +176,15 @@ struct LessonTaskScreen: View {
 #Preview {
     let container = try! DataController.previewContainer
 
-    let ticket = Ticket(
-        id: "10",
-        question: "Имеют ли право участники дорожно-транспортного происшествия получить первую медицинскую помощь, помощь спасателя или другого вида от уполномоченного государственного лица и от местных органов самоуправления, также от других уполномоченных лиц?",
-        options: [
-            "Имеют",
-            "Не имеют"
-        ],
-        rightAnswer: 1,
-        imageName: "154",
-        explanation: "Согласно подпункта 1 пункта «Б.Д» статьи 20 Закона Грузии «О дорожном движении» участники дорожного движения имеют право на получение первой помощи, спасательной и иной помощи от государственных органов и органов местного самоуправления, уполномоченных закона, а также от иных уполномоченных лиц.Во время дорожно-транспортного происшествия.",
-        score: 100
-    )
+    let ticket = Ticket.mock()
     
     return NavigationStack {
         LessonTaskScreen(
-            ticket: ticket
+            data: LessonTaskScreen.Data(
+                ticket: ticket,
+                answer: nil
+            ),
+            navigate: { print($0) }
         )
     }
     .modelContainer(container)

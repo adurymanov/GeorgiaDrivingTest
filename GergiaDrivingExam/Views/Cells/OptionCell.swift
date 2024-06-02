@@ -17,6 +17,7 @@ struct OptionCell: View {
             .background(.thinMaterial)
             .background(highlighted ? .green : .clear)
             .clipShape(RoundedRectangle(cornerRadius: 10))
+            .multilineTextAlignment(.leading)
     }
     
 }

@@ -813,6 +813,7 @@
 		966DF0D42C0CE2FC00A08E65 /* TicketImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0D32C0CE2FC00A08E65 /* TicketImageView.swift */; };
 		96796FD62C0CF6DD005D932F /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96796FD52C0CF6DD005D932F /* OptionCell.swift */; };
 		96796FD82C0CFC25005D932F /* LessonSetupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96796FD72C0CFC25005D932F /* LessonSetupScreen.swift */; };
+		96796FDA2C0D044E005D932F /* LessonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96796FD92C0D044E005D932F /* LessonScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1634,6 +1635,7 @@
 		966DF0D32C0CE2FC00A08E65 /* TicketImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketImageView.swift; sourceTree = "<group>"; };
 		96796FD52C0CF6DD005D932F /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
 		96796FD72C0CFC25005D932F /* LessonSetupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSetupScreen.swift; sourceTree = "<group>"; };
+		96796FD92C0D044E005D932F /* LessonScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2548,6 +2550,7 @@
 				966DF0AF2C0B9F4B00A08E65 /* LessonTaskScreen.swift */,
 				966DF0B52C0BCF6500A08E65 /* LessonTaskHelpScreen.swift */,
 				96796FD72C0CFC25005D932F /* LessonSetupScreen.swift */,
+				96796FD92C0D044E005D932F /* LessonScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -3490,6 +3493,7 @@
 				966DF0B92C0BCFF900A08E65 /* Ticket+ImageURL.swift in Sources */,
 				966DF0A32C0B94B800A08E65 /* CategoryCell.swift in Sources */,
 				966DF0CB2C0CDBFB00A08E65 /* TicketDTOsProvider.swift in Sources */,
+				96796FDA2C0D044E005D932F /* LessonScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

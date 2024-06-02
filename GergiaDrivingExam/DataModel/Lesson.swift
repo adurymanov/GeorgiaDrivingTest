@@ -10,6 +10,8 @@ final class Lesson: Identifiable {
     
     @Relationship(inverse: \Ticket.lessons) var tickets = [Ticket]()
     
+    @Relationship var answers = [Answer]()
+    
     init(
         id: String,
         date: Date

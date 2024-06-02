@@ -69,6 +69,7 @@ struct OptionSelectableCell: View {
     
     private var valueView: some View {
         Text(value)
+            .multilineTextAlignment(.leading)
     }
     
     private var selectorView: some View {

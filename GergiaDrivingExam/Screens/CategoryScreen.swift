@@ -5,6 +5,8 @@ struct CategoryScreen: View {
     
     @State private var lessonSetupScreen: Category?
     
+    @State private var lessonScreen: Lesson?
+    
     let category: Category
     
     var body: some View {
@@ -31,6 +33,9 @@ struct CategoryScreen: View {
                 )
             }
         }
+        .fullScreenCover(item: $lessonScreen) { lesson in
+            LessonScreen(lesson: lesson)
+        }
     }
     
     var sortedTickets: [Ticket] {
@@ -44,7 +49,11 @@ struct CategoryScreen: View {
     }
     
     private func navigation(_ trigger: LessonSetupScreen.NavigationTrigger) {
-        
+        switch trigger {
+        case .lesson(let lesson):
+            lessonSetupScreen = nil
+            lessonScreen = lesson
+        }
     }
     
 }

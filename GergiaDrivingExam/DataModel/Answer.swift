@@ -12,6 +12,8 @@ final class Answer {
     
     @Relationship(inverse: \Ticket.givenAnswers) var ticket: Ticket?
     
+    @Relationship(inverse: \Lesson.answers) var lesson: Lesson? 
+    
     init(
         id: String,
         date: Date,
