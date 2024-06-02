@@ -19,8 +19,8 @@ struct LessonTaskScreen: View {
         VStack(spacing: .zero) {
             ScrollView {
                 VStack(alignment: .leading) {
-                    if let imageUrl {
-                        ticketImageView(imageUrl: imageUrl)
+                    if let url = ticket.imageUrl {
+                        TicketImageView(url: url)
                     }
                     questionView
                     optionsSelectorView
@@ -43,10 +43,6 @@ struct LessonTaskScreen: View {
                 LessonTaskHelpScreen(ticket: ticket)
             }
         }
-    }
-    
-    private var imageUrl: URL? {
-        ticket.imageUrl
     }
     
     private var options: [IndexedOption] {
@@ -121,14 +117,6 @@ struct LessonTaskScreen: View {
         } else {
             .normal
         }
-    }
-    
-    
-    private func ticketImageView(imageUrl: URL) -> some View {
-        AsyncImage(url: imageUrl) { content in
-            content.image?.resizable().scaledToFit()
-        }
-        .background(.thinMaterial)
     }
     
     private func select(option: IndexedOption) {
