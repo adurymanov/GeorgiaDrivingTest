@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct OptionCell: View {
+struct OptionSelectableCell: View {
     
     private struct Configuration {
         let selectorImage: String
@@ -79,7 +79,7 @@ struct OptionCell: View {
 }
 
 #Preview("OptionCell: Normal") {
-    OptionCell(
+    OptionSelectableCell(
         value: "Имеют",
         style: .normal
     )
@@ -88,11 +88,11 @@ struct OptionCell: View {
 
 #Preview("OptionCell: Right") {
     VStack {
-        OptionCell(
+        OptionSelectableCell(
             value: "Имеют",
             style: .right
         )
-        OptionCell(
+        OptionSelectableCell(
             value: "Имеют",
             style: .right,
             highlighted: true
@@ -103,11 +103,11 @@ struct OptionCell: View {
 
 #Preview("OptionCell: Wrong") {
     VStack {
-        OptionCell(
+        OptionSelectableCell(
             value: "Имеют",
             style: .wrong
         )
-        OptionCell(
+        OptionSelectableCell(
             value: "Имеют",
             style: .wrong,
             highlighted: true

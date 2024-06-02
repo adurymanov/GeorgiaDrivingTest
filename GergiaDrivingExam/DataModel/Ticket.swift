@@ -28,7 +28,7 @@ final class Ticket: Identifiable {
         question: String,
         options: [String],
         rightAnswer: Int,
-        imageName: String,
+        imageName: String?,
         explanation: String?,
         score: Int?
     ) {

@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct CategoryScreen: View {
     
@@ -6,12 +7,13 @@ struct CategoryScreen: View {
     
     var body: some View {
         List {
-            ForEach(category.tickets) { ticket in
+            ForEach(sortedTickets) { ticket in
                 NavigationLink(value: ticket) {
                     TicketCell(ticket: ticket)
                 }
             }
         }
+        .listStyle(.plain)
         .toolbar {
             startLessonButton
         }
@@ -21,10 +23,28 @@ struct CategoryScreen: View {
         }
     }
     
+    var sortedTickets: [Ticket] {
+        category.tickets.sorted(by: { $0.id < $1.id })
+    }
+    
     var startLessonButton: some View {
-        Button("Start lesson") {
+        Button("Start a lesson") {
             
         }
     }
     
+}
+
+#Preview {
+    let container = try! DataController.previewContainer
+    let descriptor = FetchDescriptor<Category>(
+        sortBy: [SortDescriptor(\.name)]
+    )
+    
+    let categories = try! container.mainContext.fetch(descriptor)
+    
+    return NavigationStack {
+        CategoryScreen(category: categories.first!)
+    }
+    .modelContainer(container)
 }

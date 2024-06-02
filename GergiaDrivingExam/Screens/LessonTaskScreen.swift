@@ -61,7 +61,7 @@ struct LessonTaskScreen: View {
             Button {
                 select(option: option)
             } label: {
-                OptionCell(
+                OptionSelectableCell(
                     value: option.value,
                     style: optionCellStyle(option: option),
                     highlighted: option == selectedOption
@@ -108,7 +108,7 @@ struct LessonTaskScreen: View {
         .disabled(ticket.explanation == nil)
     }
     
-    private func optionCellStyle(option: IndexedOption) -> OptionCell.Style {
+    private func optionCellStyle(option: IndexedOption) -> OptionSelectableCell.Style {
         guard let selectedOption else { return .normal }
         
         return if option.index == ticket.rightAnswer {

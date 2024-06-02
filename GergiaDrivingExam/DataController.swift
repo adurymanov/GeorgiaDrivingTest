@@ -29,7 +29,7 @@ final class DataController {
                     question: dto.question,
                     options: dto.answers,
                     rightAnswer: dto.rightAnswerIndex,
-                    imageName: dto.imageName,
+                    imageName: dto.imageName.isEmpty ? nil : dto.imageName,
                     explanation: dto.description,
                     score: nil
                 )
