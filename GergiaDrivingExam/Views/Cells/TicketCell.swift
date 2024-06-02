@@ -6,7 +6,7 @@ struct TicketCell: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Ticket: \(ticket.id)").font(.headline)
+            Text("#\(ticket.id)").font(.headline)
             if let url = ticket.imageUrl {
                 imageView(url)
             }
