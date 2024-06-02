@@ -14,7 +14,6 @@ struct TicketCell: View {
             ForEach(ticket.options, id: \.self) { option in
                 optionView(option)
             }
-            Text("Score: \(scoreString)").font(.footnote)
         }
     }
     
