@@ -1,9 +1,9 @@
 struct TicketDTO: Identifiable, Hashable {
-    let id: String
+    let id: Int
     let question: String
     let answers: [String]
     let rightAnswerIndex: Int
-    let description: String
+    let description: String?
     let imageName: String
 }
 

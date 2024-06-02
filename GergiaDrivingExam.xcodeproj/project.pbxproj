@@ -804,7 +804,24 @@
 		966DF0B42C0BC63700A08E65 /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0B32C0BC63700A08E65 /* OptionCell.swift */; };
 		966DF0B62C0BCF6500A08E65 /* LessonTaskHelpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0B52C0BCF6500A08E65 /* LessonTaskHelpScreen.swift */; };
 		966DF0B92C0BCFF900A08E65 /* Ticket+ImageURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0B82C0BCFF900A08E65 /* Ticket+ImageURL.swift */; };
+		966DF0BB2C0CCA7000A08E65 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0BA2C0CCA7000A08E65 /* DataController.swift */; };
+		966DF0C32C0CDBC600A08E65 /* GeorgiaDrivingExamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0C22C0CDBC600A08E65 /* GeorgiaDrivingExamTests.swift */; };
+		966DF0CB2C0CDBFB00A08E65 /* TicketDTOsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0CA2C0CDBFB00A08E65 /* TicketDTOsProvider.swift */; };
+		966DF0CD2C0CDCE200A08E65 /* CategoryDTOsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0CC2C0CDCE200A08E65 /* CategoryDTOsProvider.swift */; };
+		966DF0CF2C0CDD2800A08E65 /* TicketByCategoryDTOProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0CE2C0CDD2800A08E65 /* TicketByCategoryDTOProvider.swift */; };
+		966DF0D12C0CDD7B00A08E65 /* DTOProvidersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0D02C0CDD7B00A08E65 /* DTOProvidersTests.swift */; };
+		966DF0D42C0CE2FC00A08E65 /* TicketImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0D32C0CE2FC00A08E65 /* TicketImageView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		966DF0C42C0CDBC600A08E65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 966DEA612C0A835000A08E65 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 966DEA682C0A835000A08E65;
+			remoteInfo = GergiaDrivingExam;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		966DEA692C0A835000A08E65 /* GergiaDrivingExam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GergiaDrivingExam.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1605,10 +1622,25 @@
 		966DF0B32C0BC63700A08E65 /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
 		966DF0B52C0BCF6500A08E65 /* LessonTaskHelpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonTaskHelpScreen.swift; sourceTree = "<group>"; };
 		966DF0B82C0BCFF900A08E65 /* Ticket+ImageURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ticket+ImageURL.swift"; sourceTree = "<group>"; };
+		966DF0BA2C0CCA7000A08E65 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		966DF0C02C0CDBC600A08E65 /* GeorgiaDrivingExamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeorgiaDrivingExamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		966DF0C22C0CDBC600A08E65 /* GeorgiaDrivingExamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeorgiaDrivingExamTests.swift; sourceTree = "<group>"; };
+		966DF0CA2C0CDBFB00A08E65 /* TicketDTOsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDTOsProvider.swift; sourceTree = "<group>"; };
+		966DF0CC2C0CDCE200A08E65 /* CategoryDTOsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDTOsProvider.swift; sourceTree = "<group>"; };
+		966DF0CE2C0CDD2800A08E65 /* TicketByCategoryDTOProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketByCategoryDTOProvider.swift; sourceTree = "<group>"; };
+		966DF0D02C0CDD7B00A08E65 /* DTOProvidersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTOProvidersTests.swift; sourceTree = "<group>"; };
+		966DF0D32C0CE2FC00A08E65 /* TicketImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		966DEA662C0A835000A08E65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		966DF0BD2C0CDBC600A08E65 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1622,6 +1654,7 @@
 			isa = PBXGroup;
 			children = (
 				966DEA6B2C0A835000A08E65 /* GergiaDrivingExam */,
+				966DF0C12C0CDBC600A08E65 /* GeorgiaDrivingExamTests */,
 				966DEA6A2C0A835000A08E65 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -1630,6 +1663,7 @@
 			isa = PBXGroup;
 			children = (
 				966DEA692C0A835000A08E65 /* GergiaDrivingExam.app */,
+				966DF0C02C0CDBC600A08E65 /* GeorgiaDrivingExamTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1637,12 +1671,13 @@
 		966DEA6B2C0A835000A08E65 /* GergiaDrivingExam */ = {
 			isa = PBXGroup;
 			children = (
+				966DF0C92C0CDBDB00A08E65 /* Decoding */,
 				966DF0B72C0BCFE900A08E65 /* Extensions */,
 				966DF0A82C0B95BF00A08E65 /* Screens */,
 				966DF0A02C0B949200A08E65 /* Views */,
 				966DF0952C0B8EFF00A08E65 /* DataModel */,
-				966DF0902C0A8AEA00A08E65 /* DTOs */,
 				966DF08F2C0A8AB900A08E65 /* Resources */,
+				966DF0BA2C0CCA7000A08E65 /* DataController.swift */,
 				966DEA6C2C0A835000A08E65 /* GergiaDrivingExamApp.swift */,
 				966DEA6E2C0A835000A08E65 /* ContentView.swift */,
 				966DEA722C0A835300A08E65 /* Assets.xcassets */,
@@ -2482,6 +2517,7 @@
 		966DF0A02C0B949200A08E65 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				966DF0D22C0CE2F200A08E65 /* Images */,
 				966DF0A12C0B949700A08E65 /* Cells */,
 			);
 			path = Views;
@@ -2518,6 +2554,34 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		966DF0C12C0CDBC600A08E65 /* GeorgiaDrivingExamTests */ = {
+			isa = PBXGroup;
+			children = (
+				966DF0C22C0CDBC600A08E65 /* GeorgiaDrivingExamTests.swift */,
+				966DF0D02C0CDD7B00A08E65 /* DTOProvidersTests.swift */,
+			);
+			path = GeorgiaDrivingExamTests;
+			sourceTree = "<group>";
+		};
+		966DF0C92C0CDBDB00A08E65 /* Decoding */ = {
+			isa = PBXGroup;
+			children = (
+				966DF0902C0A8AEA00A08E65 /* DTOs */,
+				966DF0CA2C0CDBFB00A08E65 /* TicketDTOsProvider.swift */,
+				966DF0CC2C0CDCE200A08E65 /* CategoryDTOsProvider.swift */,
+				966DF0CE2C0CDD2800A08E65 /* TicketByCategoryDTOProvider.swift */,
+			);
+			path = Decoding;
+			sourceTree = "<group>";
+		};
+		966DF0D22C0CE2F200A08E65 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				966DF0D32C0CE2FC00A08E65 /* TicketImageView.swift */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2538,6 +2602,24 @@
 			productReference = 966DEA692C0A835000A08E65 /* GergiaDrivingExam.app */;
 			productType = "com.apple.product-type.application";
 		};
+		966DF0BF2C0CDBC600A08E65 /* GeorgiaDrivingExamTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 966DF0C62C0CDBC600A08E65 /* Build configuration list for PBXNativeTarget "GeorgiaDrivingExamTests" */;
+			buildPhases = (
+				966DF0BC2C0CDBC600A08E65 /* Sources */,
+				966DF0BD2C0CDBC600A08E65 /* Frameworks */,
+				966DF0BE2C0CDBC600A08E65 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				966DF0C52C0CDBC600A08E65 /* PBXTargetDependency */,
+			);
+			name = GeorgiaDrivingExamTests;
+			productName = GeorgiaDrivingExamTests;
+			productReference = 966DF0C02C0CDBC600A08E65 /* GeorgiaDrivingExamTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -2550,6 +2632,10 @@
 				TargetAttributes = {
 					966DEA682C0A835000A08E65 = {
 						CreatedOnToolsVersion = 15.0.1;
+					};
+					966DF0BF2C0CDBC600A08E65 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 966DEA682C0A835000A08E65;
 					};
 				};
 			};
@@ -2567,6 +2653,7 @@
 			projectRoot = "";
 			targets = (
 				966DEA682C0A835000A08E65 /* GergiaDrivingExam */,
+				966DF0BF2C0CDBC600A08E65 /* GeorgiaDrivingExamTests */,
 			);
 		};
 /* End PBXProject section */
@@ -3357,6 +3444,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		966DF0BE2C0CDBC600A08E65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -3366,6 +3460,9 @@
 			files = (
 				966DF09D2C0B8F2800A08E65 /* Lesson.swift in Sources */,
 				966DF0AE2C0B95E800A08E65 /* TicketScreen.swift in Sources */,
+				966DF0D42C0CE2FC00A08E65 /* TicketImageView.swift in Sources */,
+				966DF0CD2C0CDCE200A08E65 /* CategoryDTOsProvider.swift in Sources */,
+				966DF0BB2C0CCA7000A08E65 /* DataController.swift in Sources */,
 				966DF0972C0B8F1100A08E65 /* TicketsByCategory.swift in Sources */,
 				966DF0B62C0BCF6500A08E65 /* LessonTaskHelpScreen.swift in Sources */,
 				966DEA6F2C0A835000A08E65 /* ContentView.swift in Sources */,
@@ -3377,16 +3474,35 @@
 				966DF0B02C0B9F4B00A08E65 /* LessonTaskScreen.swift in Sources */,
 				966DEA6D2C0A835000A08E65 /* GergiaDrivingExamApp.swift in Sources */,
 				966DF09F2C0B8F2F00A08E65 /* Answer.swift in Sources */,
+				966DF0CF2C0CDD2800A08E65 /* TicketByCategoryDTOProvider.swift in Sources */,
 				966DF0922C0A8AF800A08E65 /* TicketDTO.swift in Sources */,
 				966DF0A72C0B94C600A08E65 /* AnswerCell.swift in Sources */,
 				966DF0AC2C0B95DD00A08E65 /* CategoryScreen.swift in Sources */,
 				966DF0992C0B8F1A00A08E65 /* Category.swift in Sources */,
 				966DF0B92C0BCFF900A08E65 /* Ticket+ImageURL.swift in Sources */,
 				966DF0A32C0B94B800A08E65 /* CategoryCell.swift in Sources */,
+				966DF0CB2C0CDBFB00A08E65 /* TicketDTOsProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		966DF0BC2C0CDBC600A08E65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				966DF0D12C0CDD7B00A08E65 /* DTOProvidersTests.swift in Sources */,
+				966DF0C32C0CDBC600A08E65 /* GeorgiaDrivingExamTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		966DF0C52C0CDBC600A08E65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 966DEA682C0A835000A08E65 /* GergiaDrivingExam */;
+			targetProxy = 966DF0C42C0CDBC600A08E65 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		966DEA772C0A835300A08E65 /* Debug */ = {
@@ -3566,6 +3682,42 @@
 			};
 			name = Release;
 		};
+		966DF0C72C0CDBC600A08E65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 98J984UZ9Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.likompania.GeorgiaDrivingExamTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GergiaDrivingExam.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GergiaDrivingExam";
+			};
+			name = Debug;
+		};
+		966DF0C82C0CDBC600A08E65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 98J984UZ9Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.likompania.GeorgiaDrivingExamTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GergiaDrivingExam.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GergiaDrivingExam";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -3583,6 +3735,15 @@
 			buildConfigurations = (
 				966DEA7A2C0A835300A08E65 /* Debug */,
 				966DEA7B2C0A835300A08E65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		966DF0C62C0CDBC600A08E65 /* Build configuration list for PBXNativeTarget "GeorgiaDrivingExamTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				966DF0C72C0CDBC600A08E65 /* Debug */,
+				966DF0C82C0CDBC600A08E65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

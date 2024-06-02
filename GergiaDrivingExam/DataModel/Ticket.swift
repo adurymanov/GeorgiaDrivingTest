@@ -13,9 +13,9 @@ final class Ticket: Identifiable {
     
     var imageName: String?
     
-    var explanation: String
+    var explanation: String?
     
-    var score: Int
+    var score: Int?
     
     @Relationship var categories = [Category]()
     
@@ -29,8 +29,8 @@ final class Ticket: Identifiable {
         options: [String],
         rightAnswer: Int,
         imageName: String,
-        explanation: String,
-        score: Int
+        explanation: String?,
+        score: Int?
     ) {
         self.id = id
         self.question = question
