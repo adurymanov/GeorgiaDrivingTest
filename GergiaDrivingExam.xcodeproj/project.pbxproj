@@ -812,6 +812,7 @@
 		966DF0D12C0CDD7B00A08E65 /* DTOProvidersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0D02C0CDD7B00A08E65 /* DTOProvidersTests.swift */; };
 		966DF0D42C0CE2FC00A08E65 /* TicketImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0D32C0CE2FC00A08E65 /* TicketImageView.swift */; };
 		96796FD62C0CF6DD005D932F /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96796FD52C0CF6DD005D932F /* OptionCell.swift */; };
+		96796FD82C0CFC25005D932F /* LessonSetupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96796FD72C0CFC25005D932F /* LessonSetupScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1632,6 +1633,7 @@
 		966DF0D02C0CDD7B00A08E65 /* DTOProvidersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTOProvidersTests.swift; sourceTree = "<group>"; };
 		966DF0D32C0CE2FC00A08E65 /* TicketImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketImageView.swift; sourceTree = "<group>"; };
 		96796FD52C0CF6DD005D932F /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
+		96796FD72C0CFC25005D932F /* LessonSetupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSetupScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2545,6 +2547,7 @@
 				966DF0AD2C0B95E800A08E65 /* TicketScreen.swift */,
 				966DF0AF2C0B9F4B00A08E65 /* LessonTaskScreen.swift */,
 				966DF0B52C0BCF6500A08E65 /* LessonTaskHelpScreen.swift */,
+				96796FD72C0CFC25005D932F /* LessonSetupScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -3470,6 +3473,7 @@
 				966DF0B62C0BCF6500A08E65 /* LessonTaskHelpScreen.swift in Sources */,
 				966DEA6F2C0A835000A08E65 /* ContentView.swift in Sources */,
 				966DF0AA2C0B95D500A08E65 /* CategoriesScreen.swift in Sources */,
+				96796FD82C0CFC25005D932F /* LessonSetupScreen.swift in Sources */,
 				966DF0A52C0B94C000A08E65 /* TicketCell.swift in Sources */,
 				966DF0942C0A8B0900A08E65 /* CategoryDTO.swift in Sources */,
 				966DF0B42C0BC63700A08E65 /* OptionSelectableCell.swift in Sources */,

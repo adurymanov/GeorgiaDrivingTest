@@ -3,6 +3,8 @@ import SwiftData
 
 struct CategoryScreen: View {
     
+    @State private var lessonSetupScreen: Category?
+    
     let category: Category
     
     var body: some View {
@@ -21,6 +23,14 @@ struct CategoryScreen: View {
         .navigationDestination(for: Ticket.self) { ticket in
             TicketScreen(ticket: ticket)
         }
+        .fullScreenCover(item: $lessonSetupScreen) { data in
+            NavigationStack {
+                LessonSetupScreen(
+                    category: data,
+                    navigate: navigation
+                )
+            }
+        }
     }
     
     var sortedTickets: [Ticket] {
@@ -29,8 +39,12 @@ struct CategoryScreen: View {
     
     var startLessonButton: some View {
         Button("Start a lesson") {
-            
+            lessonSetupScreen = category
         }
+    }
+    
+    private func navigation(_ trigger: LessonSetupScreen.NavigationTrigger) {
+        
     }
     
 }

@@ -91,11 +91,9 @@ struct LessonTaskScreen: View {
             Text("Skip ticket")
                 .frame(maxWidth: .infinity)
                 .padding(8)
-                .bold()
         }
-        .buttonStyle(.borderedProminent)
+        .buttonStyle(.bordered)
         .padding()
-        .tint(.clear)
         .foregroundStyle(.primary)
     }
     
