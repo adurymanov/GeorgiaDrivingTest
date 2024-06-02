@@ -105,6 +105,7 @@ struct LessonTaskScreen: View {
         } label: {
             Label("Help", systemImage: "questionmark.circle")
         }
+        .disabled(ticket.explanation == nil)
     }
     
     private func optionCellStyle(option: IndexedOption) -> OptionCell.Style {
@@ -135,11 +136,7 @@ struct LessonTaskScreen: View {
 }
 
 #Preview {
-    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(
-        for: Ticket.self,
-        configurations: config
-    )
+    let container = try! DataController.previewContainer
 
     let ticket = Ticket(
         id: "10",

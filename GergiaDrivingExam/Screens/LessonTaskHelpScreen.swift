@@ -20,8 +20,14 @@ struct LessonTaskHelpScreen: View {
     }
     
     private var explanationView: some View {
-        Text(ticket.explanation)
-            .padding()
+        Group {
+            if let explanation = ticket.explanation {
+                Text(explanation)
+            } else {
+                Text("No explanation").foregroundStyle(.secondary)
+            }
+        }
+        .padding()
     }
     
     private var closeButton: some View {
@@ -33,11 +39,7 @@ struct LessonTaskHelpScreen: View {
 }
 
 #Preview {
-    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(
-        for: Ticket.self,
-        configurations: config
-    )
+    let container = try! DataController.previewContainer
 
     let ticket = Ticket(
         id: "10",

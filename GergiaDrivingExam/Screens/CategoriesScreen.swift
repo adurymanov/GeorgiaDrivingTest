@@ -3,7 +3,7 @@ import SwiftData
 
 struct CategoriesScreen: View {
     
-    @Query var categories: [Category]
+    @Query(sort: \Category.name) var categories: [Category]
     
     var body: some View {
         List {
@@ -13,9 +13,19 @@ struct CategoriesScreen: View {
                 }
             }
         }
+        .navigationTitle("Categories")
         .navigationDestination(for: Category.self) { category in
             CategoryScreen(category: category)
         }
     }
     
+}
+
+#Preview {
+    let container = try! DataController.previewContainer
+    
+    return NavigationStack {
+        CategoriesScreen()
+    }
+    .modelContainer(container)
 }
