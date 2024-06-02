@@ -13,6 +13,8 @@ struct LessonScreen: View {
     
     let lesson: Lesson
     
+    let finish: (Lesson) -> Void
+    
     var body: some View {
         NavigationStack(path: $navigationPath) {
             Group {
@@ -91,7 +93,7 @@ struct LessonScreen: View {
                 answer: nextAnswer
             ))
         } else {
-            
+            finish(lesson)
         }
     }
     
@@ -118,6 +120,9 @@ struct LessonScreen: View {
     
     lesson.tickets = tickets
     
-    return LessonScreen(lesson: lesson)
-        .modelContainer(container)
+    return LessonScreen(
+        lesson: lesson,
+        finish: { print($0) }
+    )
+    .modelContainer(container)
 }

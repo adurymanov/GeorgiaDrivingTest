@@ -7,6 +7,8 @@ struct CategoryScreen: View {
     
     @State private var lessonScreen: Lesson?
     
+    @State private var lessonSummaryScreen: Lesson?
+    
     let category: Category
     
     var body: some View {
@@ -31,10 +33,22 @@ struct CategoryScreen: View {
                     category: data,
                     navigate: navigation
                 )
+                .closeButton()
             }
         }
         .fullScreenCover(item: $lessonScreen) { lesson in
-            LessonScreen(lesson: lesson)
+            LessonScreen(lesson: lesson) { lesson in
+                lessonScreen = nil
+                lessonSummaryScreen = lesson
+            }
+        }
+        .fullScreenCover(item: $lessonSummaryScreen) { lesson in
+            NavigationStack {
+                LessonSummaryScreen(
+                    lesson: lesson
+                )
+                .closeButton()
+            }
         }
     }
     

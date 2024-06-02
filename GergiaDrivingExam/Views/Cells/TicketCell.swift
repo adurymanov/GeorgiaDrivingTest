@@ -17,10 +17,6 @@ struct TicketCell: View {
         }
     }
     
-    private var scoreString: String {
-        ticket.score.map(String.init) ?? "-"
-    }
-    
     private func imageView(_ url: URL) -> some View {
         TicketImageView(url: url)
             .clipShape(RoundedRectangle(cornerRadius: 8))

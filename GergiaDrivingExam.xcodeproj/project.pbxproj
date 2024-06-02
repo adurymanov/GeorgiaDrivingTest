@@ -814,6 +814,8 @@
 		96796FD62C0CF6DD005D932F /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96796FD52C0CF6DD005D932F /* OptionCell.swift */; };
 		96796FD82C0CFC25005D932F /* LessonSetupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96796FD72C0CFC25005D932F /* LessonSetupScreen.swift */; };
 		96796FDA2C0D044E005D932F /* LessonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96796FD92C0D044E005D932F /* LessonScreen.swift */; };
+		96796FDC2C0D176D005D932F /* LessonSummaryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96796FDB2C0D176D005D932F /* LessonSummaryScreen.swift */; };
+		96796FDF2C0D185E005D932F /* CloseButtonViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96796FDE2C0D185E005D932F /* CloseButtonViewModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1636,6 +1638,8 @@
 		96796FD52C0CF6DD005D932F /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
 		96796FD72C0CFC25005D932F /* LessonSetupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSetupScreen.swift; sourceTree = "<group>"; };
 		96796FD92C0D044E005D932F /* LessonScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonScreen.swift; sourceTree = "<group>"; };
+		96796FDB2C0D176D005D932F /* LessonSummaryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSummaryScreen.swift; sourceTree = "<group>"; };
+		96796FDE2C0D185E005D932F /* CloseButtonViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButtonViewModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1677,6 +1681,7 @@
 		966DEA6B2C0A835000A08E65 /* GergiaDrivingExam */ = {
 			isa = PBXGroup;
 			children = (
+				96796FDD2C0D1857005D932F /* Modifiers */,
 				966DF0C92C0CDBDB00A08E65 /* Decoding */,
 				966DF0B72C0BCFE900A08E65 /* Extensions */,
 				966DF0A82C0B95BF00A08E65 /* Screens */,
@@ -2551,6 +2556,7 @@
 				966DF0B52C0BCF6500A08E65 /* LessonTaskHelpScreen.swift */,
 				96796FD72C0CFC25005D932F /* LessonSetupScreen.swift */,
 				96796FD92C0D044E005D932F /* LessonScreen.swift */,
+				96796FDB2C0D176D005D932F /* LessonSummaryScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -2589,6 +2595,14 @@
 				966DF0D32C0CE2FC00A08E65 /* TicketImageView.swift */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		96796FDD2C0D1857005D932F /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				96796FDE2C0D185E005D932F /* CloseButtonViewModifier.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3469,6 +3483,7 @@
 			files = (
 				966DF09D2C0B8F2800A08E65 /* Lesson.swift in Sources */,
 				966DF0AE2C0B95E800A08E65 /* TicketScreen.swift in Sources */,
+				96796FDF2C0D185E005D932F /* CloseButtonViewModifier.swift in Sources */,
 				966DF0D42C0CE2FC00A08E65 /* TicketImageView.swift in Sources */,
 				966DF0CD2C0CDCE200A08E65 /* CategoryDTOsProvider.swift in Sources */,
 				966DF0BB2C0CCA7000A08E65 /* DataController.swift in Sources */,
@@ -3478,6 +3493,7 @@
 				966DF0AA2C0B95D500A08E65 /* CategoriesScreen.swift in Sources */,
 				96796FD82C0CFC25005D932F /* LessonSetupScreen.swift in Sources */,
 				966DF0A52C0B94C000A08E65 /* TicketCell.swift in Sources */,
+				96796FDC2C0D176D005D932F /* LessonSummaryScreen.swift in Sources */,
 				966DF0942C0A8B0900A08E65 /* CategoryDTO.swift in Sources */,
 				966DF0B42C0BC63700A08E65 /* OptionSelectableCell.swift in Sources */,
 				966DF09B2C0B8F2100A08E65 /* Ticket.swift in Sources */,

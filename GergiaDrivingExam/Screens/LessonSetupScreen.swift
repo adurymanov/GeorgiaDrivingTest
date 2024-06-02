@@ -9,8 +9,6 @@ struct LessonSetupScreen: View {
     
     @Environment(\.modelContext) private var modelContext
     
-    @Environment(\.dismiss) private var dismiss
-    
     @State private var ticketsCount: Int = 10
     
     let category: Category
@@ -30,17 +28,6 @@ struct LessonSetupScreen: View {
             startButton
         }
         .navigationTitle("Lesson")
-        .toolbar {
-            ToolbarItem(placement: .cancellationAction) {
-                closeButton
-            }
-        }
-    }
-    
-    private var closeButton: some View {
-        Button("Close") {
-            dismiss()
-        }
     }
     
     private var startButton: some View {
