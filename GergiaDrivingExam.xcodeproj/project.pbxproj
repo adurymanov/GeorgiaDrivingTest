@@ -811,6 +811,7 @@
 		966DF0CF2C0CDD2800A08E65 /* TicketByCategoryDTOProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0CE2C0CDD2800A08E65 /* TicketByCategoryDTOProvider.swift */; };
 		966DF0D12C0CDD7B00A08E65 /* DTOProvidersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0D02C0CDD7B00A08E65 /* DTOProvidersTests.swift */; };
 		966DF0D42C0CE2FC00A08E65 /* TicketImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0D32C0CE2FC00A08E65 /* TicketImageView.swift */; };
+		96796FD62C0CF6DD005D932F /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96796FD52C0CF6DD005D932F /* OptionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1630,6 +1631,7 @@
 		966DF0CE2C0CDD2800A08E65 /* TicketByCategoryDTOProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketByCategoryDTOProvider.swift; sourceTree = "<group>"; };
 		966DF0D02C0CDD7B00A08E65 /* DTOProvidersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTOProvidersTests.swift; sourceTree = "<group>"; };
 		966DF0D32C0CE2FC00A08E65 /* TicketImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketImageView.swift; sourceTree = "<group>"; };
+		96796FD52C0CF6DD005D932F /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2530,6 +2532,7 @@
 				966DF0A42C0B94C000A08E65 /* TicketCell.swift */,
 				966DF0A62C0B94C600A08E65 /* AnswerCell.swift */,
 				966DF0B32C0BC63700A08E65 /* OptionSelectableCell.swift */,
+				96796FD52C0CF6DD005D932F /* OptionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -3478,6 +3481,7 @@
 				966DF0922C0A8AF800A08E65 /* TicketDTO.swift in Sources */,
 				966DF0A72C0B94C600A08E65 /* AnswerCell.swift in Sources */,
 				966DF0AC2C0B95DD00A08E65 /* CategoryScreen.swift in Sources */,
+				96796FD62C0CF6DD005D932F /* OptionCell.swift in Sources */,
 				966DF0992C0B8F1A00A08E65 /* Category.swift in Sources */,
 				966DF0B92C0BCFF900A08E65 /* Ticket+ImageURL.swift in Sources */,
 				966DF0A32C0B94B800A08E65 /* CategoryCell.swift in Sources */,
