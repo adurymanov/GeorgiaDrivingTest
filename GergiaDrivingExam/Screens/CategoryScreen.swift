@@ -1,72 +1,85 @@
 import SwiftUI
+import Charts
 import SwiftData
 
 struct CategoryScreen: View {
     
-    @State private var lessonSetupScreen: Category?
+    struct TicketsChartItem: Identifiable {
+        var id: String { x }
+        let x: String
+        let y: Int
+        let score: Int?
+    }
     
-    @State private var lessonScreen: Lesson?
+    @State private var ticketsByScore: [Int?: [Ticket]] = [:]
     
-    @State private var lessonSummaryScreen: Lesson?
+    @State private var ticketsChartData: [TicketsChartItem] = []
     
     let category: Category
     
     var body: some View {
         List {
-            ForEach(sortedTickets) { ticket in
-                NavigationLink(value: ticket) {
-                    TicketCell(ticket: ticket)
-                }
+            Section("Score") {
+                ticketsView
+            }
+            Section {
+                NavigationLink("All tickets", value: category)
             }
         }
-        .listStyle(.plain)
-        .toolbar {
-            startLessonButton
+        .task {
+            prepareTickets()
         }
         .navigationTitle(category.name)
-        .navigationDestination(for: Ticket.self) { ticket in
-            TicketScreen(ticket: ticket)
+        .navigationDestination(for: Category.self) { category in
+            CategoryTicketsScreen(category: category)
         }
-        .fullScreenCover(item: $lessonSetupScreen) { data in
-            NavigationStack {
-                LessonSetupScreen(
-                    category: data,
-                    navigate: navigation
+    }
+    
+    private var ticketsView: some View {
+        Chart {
+            ForEach(ticketsChartData) { item in
+                BarMark(
+                    x: .value("Score", item.x),
+                    y: .value("Tickets", item.y)
                 )
-                .closeButton()
+                .foregroundStyle(barMarkColor(item.score))
             }
         }
-        .fullScreenCover(item: $lessonScreen) { lesson in
-            LessonScreen(lesson: lesson) { lesson in
-                lessonScreen = nil
-                lessonSummaryScreen = lesson
+        .chartXScale(domain: ["-"] + (-3...5).map(String.init))
+        .chartYScale(domain: 0...1000)
+        .padding(.vertical)
+    }
+    
+    private func prepareTickets() {
+        let tickets = category.tickets
+        
+        let ticketsByScore = Dictionary(grouping: tickets) { element in
+            switch element.score {
+            case let (.some(score)) where score <= -3:
+                -3
+            case let (.some(score)) where score >= 5:
+                5
+            default:
+                element.score
             }
         }
-        .fullScreenCover(item: $lessonSummaryScreen) { lesson in
-            NavigationStack {
-                LessonSummaryScreen(
-                    lesson: lesson
-                )
-                .closeButton()
-            }
+        let ticketsChartData = ticketsByScore.map { 
+            TicketsChartItem(
+                x: $0.key.map(String.init) ?? "-",
+                y: $0.value.count,
+                score: $0.key
+            )
         }
+        
+        self.ticketsByScore = ticketsByScore
+        self.ticketsChartData = ticketsChartData
     }
     
-    var sortedTickets: [Ticket] {
-        category.tickets.sorted(by: { $0.id < $1.id })
-    }
-    
-    var startLessonButton: some View {
-        Button("Start a lesson") {
-            lessonSetupScreen = category
-        }
-    }
-    
-    private func navigation(_ trigger: LessonSetupScreen.NavigationTrigger) {
-        switch trigger {
-        case .lesson(let lesson):
-            lessonSetupScreen = nil
-            lessonScreen = lesson
+    private func barMarkColor(_ score: Int?) -> Color {
+        if let score {
+            score < 0 ? .red : .green
+        } else {
+            .secondary
         }
     }
     

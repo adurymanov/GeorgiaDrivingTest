@@ -181,6 +181,12 @@ struct LessonTaskScreen: View {
         modelContext.insert(answer)
         answer.ticket = ticket
         
+        if answer.givenAnswer == ticket.rightAnswer {
+            ticket.increaseScore()
+        } else {
+            ticket.decreaseScore()
+        }
+        
         navigate(.next(ticket: ticket, answer: answer))
     }
     

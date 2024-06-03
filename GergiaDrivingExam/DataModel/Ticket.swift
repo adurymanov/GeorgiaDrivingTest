@@ -41,6 +41,14 @@ final class Ticket: Identifiable {
         self.score = score
     }
     
+    func increaseScore() {
+        self.score = (self.score ?? 0) + 1
+    }
+    
+    func decreaseScore() {
+        self.score = (self.score ?? 0) - 1
+    }
+    
 }
 
 extension Ticket {

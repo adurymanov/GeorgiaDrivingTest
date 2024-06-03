@@ -797,7 +797,7 @@
 		966DF0A52C0B94C000A08E65 /* TicketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0A42C0B94C000A08E65 /* TicketCell.swift */; };
 		966DF0A72C0B94C600A08E65 /* AnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0A62C0B94C600A08E65 /* AnswerCell.swift */; };
 		966DF0AA2C0B95D500A08E65 /* CategoriesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0A92C0B95D500A08E65 /* CategoriesScreen.swift */; };
-		966DF0AC2C0B95DD00A08E65 /* CategoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0AB2C0B95DD00A08E65 /* CategoryScreen.swift */; };
+		966DF0AC2C0B95DD00A08E65 /* CategoryTicketsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0AB2C0B95DD00A08E65 /* CategoryTicketsScreen.swift */; };
 		966DF0AE2C0B95E800A08E65 /* TicketScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0AD2C0B95E800A08E65 /* TicketScreen.swift */; };
 		966DF0B02C0B9F4B00A08E65 /* LessonTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0AF2C0B9F4B00A08E65 /* LessonTaskScreen.swift */; };
 		966DF0B42C0BC63700A08E65 /* OptionSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0B32C0BC63700A08E65 /* OptionSelectableCell.swift */; };
@@ -815,6 +815,7 @@
 		96796FDA2C0D044E005D932F /* LessonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96796FD92C0D044E005D932F /* LessonScreen.swift */; };
 		96796FDC2C0D176D005D932F /* LessonSummaryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96796FDB2C0D176D005D932F /* LessonSummaryScreen.swift */; };
 		96796FDF2C0D185E005D932F /* CloseButtonViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96796FDE2C0D185E005D932F /* CloseButtonViewModifier.swift */; };
+		96796FE12C0E6C7A005D932F /* CategoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96796FE02C0E6C7A005D932F /* CategoryScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1619,7 +1620,7 @@
 		966DF0A42C0B94C000A08E65 /* TicketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCell.swift; sourceTree = "<group>"; };
 		966DF0A62C0B94C600A08E65 /* AnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCell.swift; sourceTree = "<group>"; };
 		966DF0A92C0B95D500A08E65 /* CategoriesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesScreen.swift; sourceTree = "<group>"; };
-		966DF0AB2C0B95DD00A08E65 /* CategoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScreen.swift; sourceTree = "<group>"; };
+		966DF0AB2C0B95DD00A08E65 /* CategoryTicketsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTicketsScreen.swift; sourceTree = "<group>"; };
 		966DF0AD2C0B95E800A08E65 /* TicketScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketScreen.swift; sourceTree = "<group>"; };
 		966DF0AF2C0B9F4B00A08E65 /* LessonTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonTaskScreen.swift; sourceTree = "<group>"; };
 		966DF0B32C0BC63700A08E65 /* OptionSelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSelectableCell.swift; sourceTree = "<group>"; };
@@ -1638,6 +1639,7 @@
 		96796FD92C0D044E005D932F /* LessonScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonScreen.swift; sourceTree = "<group>"; };
 		96796FDB2C0D176D005D932F /* LessonSummaryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSummaryScreen.swift; sourceTree = "<group>"; };
 		96796FDE2C0D185E005D932F /* CloseButtonViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButtonViewModifier.swift; sourceTree = "<group>"; };
+		96796FE02C0E6C7A005D932F /* CategoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2547,7 +2549,8 @@
 			isa = PBXGroup;
 			children = (
 				966DF0A92C0B95D500A08E65 /* CategoriesScreen.swift */,
-				966DF0AB2C0B95DD00A08E65 /* CategoryScreen.swift */,
+				966DF0AB2C0B95DD00A08E65 /* CategoryTicketsScreen.swift */,
+				96796FE02C0E6C7A005D932F /* CategoryScreen.swift */,
 				966DF0AD2C0B95E800A08E65 /* TicketScreen.swift */,
 				966DF0AF2C0B9F4B00A08E65 /* LessonTaskScreen.swift */,
 				966DF0B52C0BCF6500A08E65 /* LessonTaskHelpScreen.swift */,
@@ -3479,6 +3482,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				966DF09D2C0B8F2800A08E65 /* Lesson.swift in Sources */,
+				96796FE12C0E6C7A005D932F /* CategoryScreen.swift in Sources */,
 				966DF0AE2C0B95E800A08E65 /* TicketScreen.swift in Sources */,
 				96796FDF2C0D185E005D932F /* CloseButtonViewModifier.swift in Sources */,
 				966DF0D42C0CE2FC00A08E65 /* TicketImageView.swift in Sources */,
@@ -3499,7 +3503,7 @@
 				966DF0CF2C0CDD2800A08E65 /* TicketByCategoryDTOProvider.swift in Sources */,
 				966DF0922C0A8AF800A08E65 /* TicketDTO.swift in Sources */,
 				966DF0A72C0B94C600A08E65 /* AnswerCell.swift in Sources */,
-				966DF0AC2C0B95DD00A08E65 /* CategoryScreen.swift in Sources */,
+				966DF0AC2C0B95DD00A08E65 /* CategoryTicketsScreen.swift in Sources */,
 				96796FD62C0CF6DD005D932F /* OptionCell.swift in Sources */,
 				966DF0992C0B8F1A00A08E65 /* Category.swift in Sources */,
 				966DF0B92C0BCFF900A08E65 /* Ticket+ImageURL.swift in Sources */,

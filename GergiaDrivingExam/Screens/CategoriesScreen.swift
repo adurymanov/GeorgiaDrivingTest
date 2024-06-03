@@ -15,7 +15,7 @@ struct CategoriesScreen: View {
         }
         .navigationTitle("Categories")
         .navigationDestination(for: Category.self) { category in
-            CategoryScreen(category: category)
+            CategoryTicketsScreen(category: category)
         }
     }
     
