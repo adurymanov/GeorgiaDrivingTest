@@ -8,14 +8,14 @@ struct CategoriesScreen: View {
     var body: some View {
         List {
             ForEach(categories) { category in
-                NavigationLink(value: category) {
+                NavigationLink(value: CategoryScreen.Data(category: category)) {
                     CategoryCell(category: category)
                 }
             }
         }
         .navigationTitle("Categories")
-        .navigationDestination(for: Category.self) { category in
-            CategoryScreen(category: category)
+        .navigationDestination(for: CategoryScreen.Data.self) { data in
+            CategoryScreen(data: data)
         }
     }
     

@@ -9,7 +9,17 @@ struct CategoryTicketsScreen: View {
     
     @State private var lessonSummaryScreen: Lesson?
     
+    struct Data: Hashable {
+        let category: Category
+    }
+    
     let category: Category
+    
+    init(
+        data: Data
+    ) {
+        self.category = data.category
+    }
     
     var body: some View {
         List {
@@ -81,7 +91,9 @@ struct CategoryTicketsScreen: View {
     let categories = try! container.mainContext.fetch(descriptor)
     
     return NavigationStack {
-        CategoryTicketsScreen(category: categories.first!)
+        CategoryTicketsScreen(data: CategoryTicketsScreen.Data(
+            category: categories.first!
+        ))
     }
     .modelContainer(container)
 }

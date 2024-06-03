@@ -11,11 +11,21 @@ struct CategoryScreen: View {
         let score: Int?
     }
     
+    struct Data: Hashable {
+        let category: Category
+    }
+    
     @State private var ticketsByScore: [Int?: [Ticket]] = [:]
     
     @State private var ticketsChartData: [TicketsChartItem] = []
     
     let category: Category
+    
+    init(
+        data: Data
+    ) {
+        self.category = data.category
+    }
     
     var body: some View {
         List {
@@ -23,15 +33,18 @@ struct CategoryScreen: View {
                 ticketsView
             }
             Section {
-                NavigationLink("All tickets", value: category)
+                NavigationLink(
+                    "All tickets",
+                    value: CategoryTicketsScreen.Data(category: category)
+                )
             }
         }
         .task {
             prepareTickets()
         }
         .navigationTitle(category.name)
-        .navigationDestination(for: Category.self) { category in
-            CategoryTicketsScreen(category: category)
+        .navigationDestination(for: CategoryTicketsScreen.Data.self) { data in
+            CategoryTicketsScreen(data: data)
         }
     }
     
@@ -94,7 +107,9 @@ struct CategoryScreen: View {
     let categories = try! container.mainContext.fetch(descriptor)
     
     return NavigationStack {
-        CategoryScreen(category: categories.first!)
+        CategoryScreen(data: CategoryScreen.Data(
+            category: categories.first!
+        ))
     }
     .modelContainer(container)
 }
