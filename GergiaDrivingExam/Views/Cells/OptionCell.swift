@@ -13,14 +13,14 @@ struct OptionCell: View {
     var body: some View {
         Text(value)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
+            .padding(8)
             .background(.thinMaterial)
             .background(highlighted ? .green : .clear)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .clipShape(RoundedRectangle(cornerRadius: 8))
             .multilineTextAlignment(.leading)
     }
     
-}
+}ащ
 
 #Preview("OptionCell") {
     OptionCell(value: "Value", highlighted: false)

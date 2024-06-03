@@ -98,6 +98,7 @@ struct LessonTaskScreen: View {
                 )
             }
             .disabled(selectedOption != nil)
+            .foregroundStyle(.primary)
         }
         .padding(.horizontal)
     }

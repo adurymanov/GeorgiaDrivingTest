@@ -11,7 +11,6 @@ struct LessonSummaryScreen: View {
                 NavigationLink(value: answer.ticket) {
                     AnswerCell(answer: answer)
                 }
-                .listRowSeparator(.hidden)
             }
         }
         .listStyle(.plain)

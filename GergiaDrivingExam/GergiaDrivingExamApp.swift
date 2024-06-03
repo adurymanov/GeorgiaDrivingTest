@@ -12,8 +12,10 @@ import SwiftData
 struct GeorgiaDrivingExamApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                ContentView()
+            }
         }
-        .modelContainer(for: Ticket.self)
+        .modelContainer(try! DataController.previewContainer)
     }
 }

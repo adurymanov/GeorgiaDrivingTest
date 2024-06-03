@@ -48,7 +48,7 @@ struct AnswerCell: View {
         let isHighlighted = index == ticket.rightAnswer || index == answer.givenAnswer
         
         return switch (isHighlighted, isCorrect) {
-        case (true, false): .red
+        case (true, false): .red.opacity(0.4)
         case (true, true): .green
         case (false, _): .clear
         }
