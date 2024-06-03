@@ -20,7 +20,7 @@ struct OptionCell: View {
             .multilineTextAlignment(.leading)
     }
     
-}ащ
+}
 
 #Preview("OptionCell") {
     OptionCell(value: "Value", highlighted: false)
