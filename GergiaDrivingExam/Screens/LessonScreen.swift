@@ -55,7 +55,8 @@ struct LessonScreen: View {
         LessonTaskScreen(
             data: LessonTaskScreen.Data(
                 ticket: ticket,
-                answer: answers[ticket]
+                answer: answers[ticket],
+                isLast: lesson.tickets.last == ticket
             ),
             navigate: navigation
         )
@@ -90,7 +91,8 @@ struct LessonScreen: View {
             
             navigationPath.append(LessonTaskScreen.Data(
                 ticket: nextTicket,
-                answer: nextAnswer
+                answer: nextAnswer,
+                isLast: lesson.tickets.last == nextTicket
             ))
         } else {
             finish(lesson)

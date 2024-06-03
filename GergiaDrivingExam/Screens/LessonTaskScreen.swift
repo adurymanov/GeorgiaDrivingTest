@@ -17,6 +17,7 @@ struct LessonTaskScreen: View {
     struct Data: Hashable {
         let ticket: Ticket
         let answer: Answer?
+        let isLast: Bool
     }
     
     @Environment(\.modelContext) private var modelContext
@@ -29,6 +30,8 @@ struct LessonTaskScreen: View {
     
     let answer: Answer?
     
+    let isLast: Bool
+    
     let navigate: (NavigationTrigger) -> Void
     
     init(
@@ -37,6 +40,7 @@ struct LessonTaskScreen: View {
     ) {
         self.ticket = data.ticket
         self.answer = data.answer
+        self.isLast = data.isLast
         self.navigate = navigate
     }
     
@@ -81,6 +85,14 @@ struct LessonTaskScreen: View {
         }
     }
     
+    private var skipButtonTitle: String {
+        isLast ? "Finish" : "Skip question"
+    }
+    
+    private var nextButtonTitle: String {
+        isLast ? "Finish" : "Next question"
+    }
+    
     private var questionView: some View {
         Text(ticket.question)
             .padding()
@@ -107,7 +119,7 @@ struct LessonTaskScreen: View {
         Button {
             nextTicket()
         } label: {
-            Text("Next ticket")
+            Text(nextButtonTitle)
                 .frame(maxWidth: .infinity)
                 .padding(8)
         }
@@ -119,7 +131,7 @@ struct LessonTaskScreen: View {
         Button {
             skipTicket()
         } label: {
-            Text("Skip ticket")
+            Text(skipButtonTitle)
                 .frame(maxWidth: .infinity)
                 .padding(8)
         }
@@ -183,7 +195,8 @@ struct LessonTaskScreen: View {
         LessonTaskScreen(
             data: LessonTaskScreen.Data(
                 ticket: ticket,
-                answer: nil
+                answer: nil,
+                isLast: true
             ),
             navigate: { print($0) }
         )
