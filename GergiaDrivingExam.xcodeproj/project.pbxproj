@@ -789,7 +789,6 @@
 		966DF08E2C0A8AAE00A08E65 /* ticketsByCat.json in Resources */ = {isa = PBXBuildFile; fileRef = 966DF08D2C0A8AAE00A08E65 /* ticketsByCat.json */; };
 		966DF0922C0A8AF800A08E65 /* TicketDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0912C0A8AF800A08E65 /* TicketDTO.swift */; };
 		966DF0942C0A8B0900A08E65 /* CategoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0932C0A8B0900A08E65 /* CategoryDTO.swift */; };
-		966DF0972C0B8F1100A08E65 /* TicketsByCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0962C0B8F1100A08E65 /* TicketsByCategory.swift */; };
 		966DF0992C0B8F1A00A08E65 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0982C0B8F1A00A08E65 /* Category.swift */; };
 		966DF09B2C0B8F2100A08E65 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF09A2C0B8F2100A08E65 /* Ticket.swift */; };
 		966DF09D2C0B8F2800A08E65 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF09C2C0B8F2800A08E65 /* Lesson.swift */; };
@@ -1612,7 +1611,6 @@
 		966DF08D2C0A8AAE00A08E65 /* ticketsByCat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ticketsByCat.json; sourceTree = "<group>"; };
 		966DF0912C0A8AF800A08E65 /* TicketDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDTO.swift; sourceTree = "<group>"; };
 		966DF0932C0A8B0900A08E65 /* CategoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDTO.swift; sourceTree = "<group>"; };
-		966DF0962C0B8F1100A08E65 /* TicketsByCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsByCategory.swift; sourceTree = "<group>"; };
 		966DF0982C0B8F1A00A08E65 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		966DF09A2C0B8F2100A08E65 /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
 		966DF09C2C0B8F2800A08E65 /* Lesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
@@ -2516,7 +2514,6 @@
 		966DF0952C0B8EFF00A08E65 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				966DF0962C0B8F1100A08E65 /* TicketsByCategory.swift */,
 				966DF0982C0B8F1A00A08E65 /* Category.swift */,
 				966DF09A2C0B8F2100A08E65 /* Ticket.swift */,
 				966DF09C2C0B8F2800A08E65 /* Lesson.swift */,
@@ -3487,7 +3484,6 @@
 				966DF0D42C0CE2FC00A08E65 /* TicketImageView.swift in Sources */,
 				966DF0CD2C0CDCE200A08E65 /* CategoryDTOsProvider.swift in Sources */,
 				966DF0BB2C0CCA7000A08E65 /* DataController.swift in Sources */,
-				966DF0972C0B8F1100A08E65 /* TicketsByCategory.swift in Sources */,
 				966DF0B62C0BCF6500A08E65 /* LessonTaskHelpScreen.swift in Sources */,
 				966DEA6F2C0A835000A08E65 /* ContentView.swift in Sources */,
 				966DF0AA2C0B95D500A08E65 /* CategoriesScreen.swift in Sources */,
