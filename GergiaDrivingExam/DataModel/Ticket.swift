@@ -55,7 +55,7 @@ final class Ticket: Identifiable {
     func increaseScore() {
         switch score {
         case .empty:
-            self.score = .value(-1)
+            self.score = .value(1)
         case let .value(score) where score >= Self.scoreRange.upperBound:
             self.score = .value(Self.scoreRange.upperBound)
         case let .value(score):
