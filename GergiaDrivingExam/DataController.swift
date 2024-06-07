@@ -31,7 +31,7 @@ final class DataController {
                     rightAnswer: dto.rightAnswerIndex,
                     imageName: dto.imageName.isEmpty ? nil : dto.imageName,
                     explanation: dto.description,
-                    score: nil
+                    score: .empty
                 )
             }
             

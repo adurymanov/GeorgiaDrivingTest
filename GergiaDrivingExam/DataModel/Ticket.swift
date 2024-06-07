@@ -3,6 +3,12 @@ import SwiftData
 @Model
 final class Ticket: Identifiable {
     
+    static let scoreRange = -3...3
+    
+    static var scores: [TicketScore] {
+        [.empty] + Self.scoreRange.map { TicketScore.value($0) }
+    }
+    
     @Attribute(.unique) var id: String
     
     var question: String
@@ -15,7 +21,7 @@ final class Ticket: Identifiable {
     
     var explanation: String?
     
-    var score: Int?
+    var score: TicketScore
     
     @Relationship var categories = [Category]()
     
@@ -30,7 +36,7 @@ final class Ticket: Identifiable {
         rightAnswer: Int,
         imageName: String?,
         explanation: String?,
-        score: Int?
+        score: TicketScore
     ) {
         self.id = id
         self.question = question
@@ -42,11 +48,25 @@ final class Ticket: Identifiable {
     }
     
     func increaseScore() {
-        self.score = (self.score ?? 0) + 1
+        switch score {
+        case .empty:
+            self.score = .value(-1)
+        case let .value(score) where score >= Self.scoreRange.upperBound:
+            self.score = .value(Self.scoreRange.upperBound)
+        case let .value(score):
+            self.score = .value(score + 1)
+        }
     }
     
     func decreaseScore() {
-        self.score = (self.score ?? 0) - 1
+        switch score {
+        case .empty:
+            self.score = .value(-1)
+        case let .value(score) where score <= Self.scoreRange.lowerBound:
+            self.score = .value(Self.scoreRange.lowerBound)
+        case let .value(score):
+            self.score = .value(score - 1)
+        }
     }
     
 }
@@ -64,7 +84,7 @@ extension Ticket {
         rightAnswer: Int = 1,
         imageName: String? = "154",
         explanation: String? = "Согласно подпункта 1 пункта «Б.Д» статьи 20 Закона Грузии «О дорожном движении» участники дорожного движения имеют право на получение первой помощи, спасательной и иной помощи от государственных органов и органов местного самоуправления, уполномоченных закона, а также от иных уполномоченных лиц.Во время дорожно-транспортного происшествия.",
-        score: Int? = 100
+        score: TicketScore = .value(100)
     ) -> Self {
         self.init(
             id: id,

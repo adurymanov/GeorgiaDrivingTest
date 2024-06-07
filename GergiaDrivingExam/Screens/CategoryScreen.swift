@@ -8,14 +8,14 @@ struct CategoryScreen: View {
         var id: String { x }
         let x: String
         let y: Int
-        let score: Int?
+        let score: TicketScore
     }
     
     struct Data: Hashable {
         let category: Category
     }
     
-    @State private var ticketsByScore: [Int?: [Ticket]] = [:]
+    @State private var ticketsByScore: [TicketScore: [Ticket]] = [:]
     
     @State private var ticketsChartData: [TicketsChartItem] = []
     
@@ -58,7 +58,7 @@ struct CategoryScreen: View {
                 .foregroundStyle(barMarkColor(item.score))
             }
         }
-        .chartXScale(domain: ["-"] + (-3...5).map(String.init))
+        .chartXScale(domain: Ticket.scores.map(scoreTitle(_:)))
         .chartYScale(domain: 0...1000)
         .padding(.vertical)
     }
@@ -66,19 +66,10 @@ struct CategoryScreen: View {
     private func prepareTickets() {
         let tickets = category.tickets
         
-        let ticketsByScore = Dictionary(grouping: tickets) { element in
-            switch element.score {
-            case let (.some(score)) where score <= -3:
-                -3
-            case let (.some(score)) where score >= 5:
-                5
-            default:
-                element.score
-            }
-        }
-        let ticketsChartData = ticketsByScore.map { 
+        let ticketsByScore = Dictionary(grouping: tickets, by: \.score)
+        let ticketsChartData = ticketsByScore.map {
             TicketsChartItem(
-                x: $0.key.map(String.init) ?? "-",
+                x: scoreTitle($0.key),
                 y: $0.value.count,
                 score: $0.key
             )
@@ -88,11 +79,21 @@ struct CategoryScreen: View {
         self.ticketsChartData = ticketsChartData
     }
     
-    private func barMarkColor(_ score: Int?) -> Color {
-        if let score {
-            score < 0 ? .red : .green
-        } else {
+    private func barMarkColor(_ score: TicketScore) -> Color {
+        switch score {
+        case .empty:
             .secondary
+        case let .value(score):
+            score < 0 ? .red : .green
+        }
+    }
+    
+    private func scoreTitle(_ score: TicketScore) -> String {
+        switch score {
+        case let .value(score):
+            String(score)
+        case .empty:
+            "-"
         }
     }
     
