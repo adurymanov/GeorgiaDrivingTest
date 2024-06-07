@@ -32,4 +32,8 @@ final class TicketsFilter {
         self.scores = scores
     }
     
+    var isEmpty: Bool {
+        scores.isEmpty && _lastReviewMinDate == nil && _lastReviewMaxDate == nil
+    }
+    
 }

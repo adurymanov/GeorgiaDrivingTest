@@ -3,6 +3,12 @@ import SwiftData
 
 struct LessonSetupScreen: View {
     
+    struct Data: Identifiable, Hashable {
+        var id: String { category.id }
+        let category: Category
+        let filter: TicketsFilter
+    }
+    
     enum NavigationTrigger {
         case lesson(Lesson)
     }
@@ -11,9 +17,22 @@ struct LessonSetupScreen: View {
     
     @State private var ticketsCount: Int = 10
     
+    @State private var isLessonStarting: Bool = false
+    
     let category: Category
     
+    let filter: TicketsFilter
+    
     let navigate: (NavigationTrigger) -> Void
+    
+    init(
+        data: Data,
+        navigate: @escaping (NavigationTrigger) -> Void
+    ) {
+        self.category = data.category
+        self.filter = data.filter
+        self.navigate = navigate
+    }
     
     var body: some View {
         List {
@@ -23,20 +42,34 @@ struct LessonSetupScreen: View {
             formField(title: "Tickets count") {
                 TextField("Tickets count", value: $ticketsCount, format: .number)
             }
+            formField(title: "Filter") {
+                NavigationLink(filter.isEmpty ? "Empty filter" : "Some filter", value: filter)
+            }
         }
         .overlay(alignment: .bottom) {
             startButton
+        }
+        .navigationDestination(for: TicketsFilter.self) { filter in
+            TicketsFilterScreen(filter: filter)
         }
         .navigationTitle("Lesson")
     }
     
     private var startButton: some View {
         Button {
-            startLessonAction()
+            Task {
+                await startLessonAction()
+            }
         } label: {
-            Text("Start")
-                .frame(maxWidth: .infinity)
-                .padding(8)
+            HStack {
+                if isLessonStarting {
+                    ProgressView()
+                } else {
+                    Text("Start")
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .padding(8)
         }
         .buttonStyle(.borderedProminent)
         .padding()
@@ -53,19 +86,23 @@ struct LessonSetupScreen: View {
         }
     }
     
-    private func startLessonAction() {
-        let tickets = category.tickets.shuffled().prefix(ticketsCount)
+    private func startLessonAction() async {
+        let tickets = await category
+            .tickets
+            .filter(using: filter)
+            .shuffled()
+            .prefix(ticketsCount)
         
         let lesson = Lesson(
             id: UUID().uuidString,
             date: .now
         )
         
-        modelContext.insert(lesson)
-        
-        lesson.tickets = Array(tickets)
-        
-        navigate(.lesson(lesson))
+        await MainActor.run {
+            modelContext.insert(lesson)
+            lesson.tickets = Array(tickets)
+            navigate(.lesson(lesson))
+        }
     }
     
 }
@@ -80,7 +117,13 @@ struct LessonSetupScreen: View {
     
     return NavigationStack {
         LessonSetupScreen(
-            category: categories.first!,
+            data: LessonSetupScreen.Data(
+                category: categories.first!,
+                filter: TicketsFilter(
+                    lastReviewDateRange: nil,
+                    scores: []
+                )
+            ),
             navigate: { print($0) }
         )
     }

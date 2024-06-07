@@ -3,7 +3,7 @@ import SwiftData
 
 struct CategoryTicketsScreen: View {
     
-    @State private var lessonSetupScreen: Category?
+    @State private var lessonSetupScreen: LessonSetupScreen.Data?
     
     @State private var lessonScreen: Lesson?
     
@@ -13,6 +13,8 @@ struct CategoryTicketsScreen: View {
         lastReviewDateRange: nil,
         scores: []
     )
+    
+    @State private var tickets: [Ticket] = []
     
     struct Data: Hashable {
         let category: Category
@@ -29,6 +31,12 @@ struct CategoryTicketsScreen: View {
             ticketsList
             startLessonButton
         }
+        .task {
+            let tickets = await sortedTickets
+            await MainActor.run {
+                self.tickets = tickets
+            }
+        }
         .toolbar {
             filtersButton
         }
@@ -42,7 +50,7 @@ struct CategoryTicketsScreen: View {
         .fullScreenCover(item: $lessonSetupScreen) { data in
             NavigationStack {
                 LessonSetupScreen(
-                    category: data,
+                    data: data,
                     navigate: navigation
                 )
                 .closeButton()
@@ -65,37 +73,32 @@ struct CategoryTicketsScreen: View {
     }
     
     var sortedTickets: [Ticket] {
-        category
-            .tickets
-            .filter { ticket in
-                guard let range = filter.lastReviewDateRange else {
-                    return true
-                }
-                return ticket.lastReviewDate.map { range.contains($0 )} ?? false
-            }
-            .filter { ticket in
-                guard !filter.scores.isEmpty else {
-                    return true
-                }
-                return filter.scores.contains(ticket.score)
-            }
-            .sorted(by: { $0.id < $1.id })
+        get async {
+            await category
+                .tickets
+                .filter(using: filter)
+                .sorted(by: { $0.id < $1.id })
+        }
     }
     
     var ticketsList: some View {
         List {
-            ForEach(sortedTickets) { ticket in
+            ForEach(tickets) { ticket in
                 NavigationLink(value: ticket) {
                     TicketCell(ticket: ticket)
                 }
             }
         }
+        .animation(.default, value: tickets)
         .listStyle(.plain)
     }
     
     var startLessonButton: some View {
         Button {
-            lessonSetupScreen = category
+            lessonSetupScreen = LessonSetupScreen.Data(
+                category: category,
+                filter: filter
+            )
         } label: {
             Text("Start a lesson")
                 .frame(maxWidth: .infinity)

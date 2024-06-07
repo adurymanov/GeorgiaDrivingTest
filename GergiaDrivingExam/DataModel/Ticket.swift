@@ -76,6 +76,25 @@ final class Ticket: Identifiable {
     
 }
 
+extension Array where Element == Ticket {
+    
+    func filter(using filter: TicketsFilter) async -> Self {
+        self.filter { ticket in
+            guard let range = filter.lastReviewDateRange else {
+                return true
+            }
+            return ticket.lastReviewDate.map { range.contains($0 )} ?? false
+        }
+        .filter { ticket in
+            guard !filter.scores.isEmpty else {
+                return true
+            }
+            return filter.scores.contains(ticket.score)
+        }
+    }
+    
+}
+
 extension Ticket {
     
     static func mock(
