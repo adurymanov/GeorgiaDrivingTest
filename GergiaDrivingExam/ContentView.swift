@@ -14,8 +14,6 @@ struct ContentView: View {
     
     @Query(sort: \Category.name) var categories: [Category]
     
-    let navigationPath: NavigationPath
-    
     var body: some View {
         if let selectedCategory {
             CategoryScreen(data: CategoryScreen.Data(category: selectedCategory))
@@ -31,6 +29,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(navigationPath: NavigationPath())
+    ContentView()
         .modelContainer(for: Ticket.self, inMemory: true)
 }
