@@ -53,6 +53,9 @@ struct CategoryTicketsScreen: View {
                     await sortedTickets
                 }.value
                 await MainActor.run {
+                    guard !Task.isCancelled else {
+                        return
+                    }
                     self.tickets = tickets
                 }
             }
@@ -105,12 +108,15 @@ struct CategoryTicketsScreen: View {
     
     var ticketsList: some View {
         List {
-            ForEach(tickets) { ticket in
-                NavigationLink(value: ticket) {
-                    TicketCell(ticket: ticket)
+            Section("\(tickets.count) tickets") {
+                ForEach(tickets) { ticket in
+                    NavigationLink(value: ticket) {
+                        TicketCell(ticket: ticket)
+                    }
                 }
             }
         }
+        .animation(.linear(duration: 0.3), value: tickets)
         .listStyle(.plain)
     }
     

@@ -83,16 +83,23 @@ final class Ticket: Identifiable {
 extension Array where Element == Ticket {
     
     func filter(using filter: TicketsFilter) async -> Self {
-        var filtered = self
+        var filtered = [Ticket]()
         
-        if let range = filter.lastReviewDateRange {
-            filtered = filtered.filter { ticket in
-                ticket.lastReviewDate.map { range.contains($0 )} ?? false
+        for ticket in self {
+            guard !Task.isCancelled else {
+                return []
             }
-        }
-        if !filter.scores.isEmpty {
-            filtered = filtered.filter {
-                filter.scores.contains($0.score)
+            var isSelected = true
+            
+            if let range = filter.lastReviewDateRange {
+                isSelected = ticket.lastReviewDate.map { range.contains($0 )} ?? false
+            } 
+            if !filter.scores.isEmpty {
+                isSelected = filter.scores.contains(ticket.score)
+            }
+            
+            if isSelected {
+                filtered.append(ticket)
             }
         }
         
@@ -104,10 +111,18 @@ extension Array where Element == Ticket {
             return self
         }
         let lowercasedSearchText = searchText.lowercased()
+        var result = [Ticket]()
         
-        return self.filter {
-            $0.searchText.contains(lowercasedSearchText)
+        for ticket in self {
+            guard !Task.isCancelled else {
+                return []
+            }
+            if ticket.searchText.contains(lowercasedSearchText) {
+                result.append(ticket)
+            }
         }
+        
+        return result
     }
     
 }
