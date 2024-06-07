@@ -64,7 +64,7 @@ struct CategoryTicketsScreen: View {
         .toolbar {
             filtersButton
         }
-        .navigationTitle(category.name)
+        .navigationTitle("Tickets")
         .navigationDestination(for: Ticket.self) { ticket in
             TicketScreen(ticket: ticket)
         }
@@ -127,7 +127,7 @@ struct CategoryTicketsScreen: View {
                 filter: filter
             )
         } label: {
-            Text("Start a lesson")
+            Text("Start test")
                 .frame(maxWidth: .infinity)
                 .padding(8)
         }

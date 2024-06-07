@@ -52,7 +52,7 @@ struct LessonSetupScreen: View {
         .navigationDestination(for: TicketsFilter.self) { filter in
             TicketsFilterScreen(filter: filter)
         }
-        .navigationTitle("Lesson")
+        .navigationTitle("Test")
     }
     
     private var startButton: some View {
