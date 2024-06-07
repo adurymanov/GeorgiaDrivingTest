@@ -4,7 +4,7 @@ import SwiftData
 
 struct CategoryScreen: View {
     
-    struct TicketsChartItem: Identifiable {
+    struct TicketsChartItem: Identifiable, Hashable {
         var id: String { x }
         let x: String
         let y: Int
@@ -58,6 +58,7 @@ struct CategoryScreen: View {
                 .foregroundStyle(barMarkColor(item.score))
             }
         }
+        .animation(.default, value: ticketsChartData)
         .chartXScale(domain: Ticket.scores.map(scoreTitle(_:)))
         .chartYScale(domain: 0...1000)
         .padding(.vertical)

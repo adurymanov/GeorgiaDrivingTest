@@ -7,7 +7,9 @@ struct TicketCell: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("#\(ticket.id)").font(.headline)
-            imageView(ticket.imageUrl)
+            if let imageUrl = ticket.imageUrl {
+                imageView(imageUrl)
+            }
             Text(ticket.question)
             ForEach(ticket.options, id: \.self) { option in
                 optionView(option)
@@ -16,9 +18,16 @@ struct TicketCell: View {
     }
     
     private func imageView(_ url: URL?) -> some View {
-        TicketImageView(url: url)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-            .frame(maxWidth: .infinity)
+        AsyncImage(url: url) { content in
+            content
+                .image?
+                .resizable()
+                .scaledToFill()
+                .frame(alignment: .center)
+        }
+        .frame(width: 256, height: 128)
+        .clipped()
+        .clipShape(RoundedRectangle(cornerRadius: 8))
     }
     
     private func optionView(_ value: String) -> some View {
