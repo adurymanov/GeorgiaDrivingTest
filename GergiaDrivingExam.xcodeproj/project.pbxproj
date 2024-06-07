@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		800430412C13236600FAC9E0 /* TicketsFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800430402C13236600FAC9E0 /* TicketsFilter.swift */; };
 		800430442C1324A100FAC9E0 /* TicketScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800430432C1324A100FAC9E0 /* TicketScore.swift */; };
+		800430462C13281B00FAC9E0 /* TicketsFilterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800430452C13281B00FAC9E0 /* TicketsFilterScreen.swift */; };
+		800430492C1357BB00FAC9E0 /* TicketScoresPricker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800430482C1357BB00FAC9E0 /* TicketScoresPricker.swift */; };
+		8004304B2C13622A00FAC9E0 /* TicketLastReviewDatRangeFixedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8004304A2C13622A00FAC9E0 /* TicketLastReviewDatRangeFixedPicker.swift */; };
 		966DEA6D2C0A835000A08E65 /* GergiaDrivingExamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DEA6C2C0A835000A08E65 /* GergiaDrivingExamApp.swift */; };
 		966DEA6F2C0A835000A08E65 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DEA6E2C0A835000A08E65 /* ContentView.swift */; };
 		966DEA732C0A835300A08E65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 966DEA722C0A835300A08E65 /* Assets.xcassets */; };
@@ -833,6 +836,9 @@
 /* Begin PBXFileReference section */
 		800430402C13236600FAC9E0 /* TicketsFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsFilter.swift; sourceTree = "<group>"; };
 		800430432C1324A100FAC9E0 /* TicketScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketScore.swift; sourceTree = "<group>"; };
+		800430452C13281B00FAC9E0 /* TicketsFilterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsFilterScreen.swift; sourceTree = "<group>"; };
+		800430482C1357BB00FAC9E0 /* TicketScoresPricker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketScoresPricker.swift; sourceTree = "<group>"; };
+		8004304A2C13622A00FAC9E0 /* TicketLastReviewDatRangeFixedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketLastReviewDatRangeFixedPicker.swift; sourceTree = "<group>"; };
 		966DEA692C0A835000A08E65 /* GergiaDrivingExam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GergiaDrivingExam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		966DEA6C2C0A835000A08E65 /* GergiaDrivingExamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GergiaDrivingExamApp.swift; sourceTree = "<group>"; };
 		966DEA6E2C0A835000A08E65 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -1670,6 +1676,15 @@
 				800430432C1324A100FAC9E0 /* TicketScore.swift */,
 			);
 			path = Types;
+			sourceTree = "<group>";
+		};
+		800430472C1357B300FAC9E0 /* Pickers */ = {
+			isa = PBXGroup;
+			children = (
+				800430482C1357BB00FAC9E0 /* TicketScoresPricker.swift */,
+				8004304A2C13622A00FAC9E0 /* TicketLastReviewDatRangeFixedPicker.swift */,
+			);
+			path = Pickers;
 			sourceTree = "<group>";
 		};
 		966DEA602C0A835000A08E65 = {
@@ -2541,6 +2556,7 @@
 		966DF0A02C0B949200A08E65 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				800430472C1357B300FAC9E0 /* Pickers */,
 				966DF0D22C0CE2F200A08E65 /* Images */,
 				966DF0A12C0B949700A08E65 /* Cells */,
 			);
@@ -2571,6 +2587,7 @@
 				96796FD72C0CFC25005D932F /* LessonSetupScreen.swift */,
 				96796FD92C0D044E005D932F /* LessonScreen.swift */,
 				96796FDB2C0D176D005D932F /* LessonSummaryScreen.swift */,
+				800430452C13281B00FAC9E0 /* TicketsFilterScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -3499,6 +3516,7 @@
 				96796FE12C0E6C7A005D932F /* CategoryScreen.swift in Sources */,
 				966DF0AE2C0B95E800A08E65 /* TicketScreen.swift in Sources */,
 				96796FDF2C0D185E005D932F /* CloseButtonViewModifier.swift in Sources */,
+				8004304B2C13622A00FAC9E0 /* TicketLastReviewDatRangeFixedPicker.swift in Sources */,
 				966DF0D42C0CE2FC00A08E65 /* TicketImageView.swift in Sources */,
 				966DF0CD2C0CDCE200A08E65 /* CategoryDTOsProvider.swift in Sources */,
 				800430442C1324A100FAC9E0 /* TicketScore.swift in Sources */,
@@ -3512,6 +3530,7 @@
 				96796FDC2C0D176D005D932F /* LessonSummaryScreen.swift in Sources */,
 				966DF0942C0A8B0900A08E65 /* CategoryDTO.swift in Sources */,
 				966DF0B42C0BC63700A08E65 /* OptionSelectableCell.swift in Sources */,
+				800430462C13281B00FAC9E0 /* TicketsFilterScreen.swift in Sources */,
 				966DF09B2C0B8F2100A08E65 /* Ticket.swift in Sources */,
 				966DF0B02C0B9F4B00A08E65 /* LessonTaskScreen.swift in Sources */,
 				966DEA6D2C0A835000A08E65 /* GergiaDrivingExamApp.swift in Sources */,
@@ -3525,6 +3544,7 @@
 				966DF0B92C0BCFF900A08E65 /* Ticket+ImageURL.swift in Sources */,
 				966DF0A32C0B94B800A08E65 /* CategoryCell.swift in Sources */,
 				966DF0CB2C0CDBFB00A08E65 /* TicketDTOsProvider.swift in Sources */,
+				800430492C1357BB00FAC9E0 /* TicketScoresPricker.swift in Sources */,
 				96796FDA2C0D044E005D932F /* LessonScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,4 +1,5 @@
 import SwiftData
+import Foundation
 
 @Model
 final class Ticket: Identifiable {
@@ -28,6 +29,10 @@ final class Ticket: Identifiable {
     @Relationship var givenAnswers = [Answer]()
     
     @Relationship var lessons = [Lesson]()
+    
+    var lastReviewDate: Date? {
+        givenAnswers.map(\.date).max()
+    }
     
     init(
         id: String,

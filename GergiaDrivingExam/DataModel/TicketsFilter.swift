@@ -4,21 +4,31 @@ import SwiftData
 @Model
 final class TicketsFilter {
     
-    @Attribute(.unique) var id: String
+    private var _lastReviewMinDate: Date?
     
-    var dates: ClosedRange<Date>
+    private var _lastReviewMaxDate: Date?
     
     var scores: Set<TicketScore>
     
-    @Relationship(inverse: \Category.filter) var category: Category?
+    var lastReviewDateRange: ClosedRange<Date>? {
+        get {
+            guard let _lastReviewMinDate, let _lastReviewMaxDate else {
+                return nil
+            }
+            return _lastReviewMinDate..._lastReviewMaxDate
+        }
+        set {
+            _lastReviewMinDate = newValue?.lowerBound
+            _lastReviewMaxDate = newValue?.upperBound
+        }
+    }
     
     init(
-        id: String,
-        dates: ClosedRange<Date>,
+        lastReviewDateRange: ClosedRange<Date>?,
         scores: Set<TicketScore>
     ) {
-        self.id = id
-        self.dates = dates
+        self._lastReviewMinDate = lastReviewDateRange?.lowerBound
+        self._lastReviewMaxDate = lastReviewDateRange?.upperBound
         self.scores = scores
     }
     

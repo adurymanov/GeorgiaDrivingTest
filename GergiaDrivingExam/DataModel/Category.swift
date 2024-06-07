@@ -9,8 +9,6 @@ final class Category: Identifiable {
     
     @Relationship(inverse: \Ticket.categories) var tickets: [Ticket] = []
     
-    @Relationship var filter: TicketsFilter?
-    
     init(
         id: String,
         name: String

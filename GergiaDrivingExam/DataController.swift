@@ -8,7 +8,7 @@ final class DataController {
         get throws {
             let config = ModelConfiguration(isStoredInMemoryOnly: true)
             let container = try! ModelContainer(
-                for: Ticket.self,
+                for: Ticket.self, TicketsFilter.self,
                 configurations: config
             )
             
