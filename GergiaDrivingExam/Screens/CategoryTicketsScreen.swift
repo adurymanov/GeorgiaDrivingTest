@@ -1,6 +1,10 @@
 import SwiftUI
 import SwiftData
 
+private final class TaskWrapper {
+    var task: Task<Void, Never>?
+}
+
 struct CategoryTicketsScreen: View {
     
     @State private var lessonSetupScreen: LessonSetupScreen.Data?
@@ -14,7 +18,11 @@ struct CategoryTicketsScreen: View {
         scores: []
     )
     
+    @State private var searchText: String = ""
+    
     @State private var tickets: [Ticket] = []
+
+    private var searchTask = TaskWrapper()
     
     struct Data: Hashable {
         let category: Category
@@ -37,6 +45,19 @@ struct CategoryTicketsScreen: View {
                 self.tickets = tickets
             }
         }
+        .onChange(of: searchText, { oldValue, newValue in
+            searchTask.task?.cancel()
+            searchTask.task = Task {
+                try? await Task.sleep(for: .milliseconds(300))
+                let tickets = await Task.detached {
+                    await sortedTickets
+                }.value
+                await MainActor.run {
+                    self.tickets = tickets
+                }
+            }
+        })
+        .searchable(text: $searchText, placement: .navigationBarDrawer)
         .toolbar {
             filtersButton
         }
@@ -77,6 +98,7 @@ struct CategoryTicketsScreen: View {
             await category
                 .tickets
                 .filter(using: filter)
+                .filter(searchText: searchText)
                 .sorted(by: { $0.id < $1.id })
         }
     }
@@ -89,7 +111,6 @@ struct CategoryTicketsScreen: View {
                 }
             }
         }
-        .animation(.default, value: tickets)
         .listStyle(.plain)
     }
     

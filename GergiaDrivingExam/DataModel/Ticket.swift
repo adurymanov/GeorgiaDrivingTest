@@ -34,6 +34,10 @@ final class Ticket: Identifiable {
         givenAnswers.map(\.date).max()
     }
     
+    var searchText: String {
+        (id + question + options.joined() + (explanation ?? "")).lowercased()
+    }
+    
     init(
         id: String,
         question: String,
@@ -79,17 +83,30 @@ final class Ticket: Identifiable {
 extension Array where Element == Ticket {
     
     func filter(using filter: TicketsFilter) async -> Self {
-        self.filter { ticket in
-            guard let range = filter.lastReviewDateRange else {
-                return true
+        var filtered = self
+        
+        if let range = filter.lastReviewDateRange {
+            filtered = filtered.filter { ticket in
+                ticket.lastReviewDate.map { range.contains($0 )} ?? false
             }
-            return ticket.lastReviewDate.map { range.contains($0 )} ?? false
         }
-        .filter { ticket in
-            guard !filter.scores.isEmpty else {
-                return true
+        if !filter.scores.isEmpty {
+            filtered = filtered.filter {
+                filter.scores.contains($0.score)
             }
-            return filter.scores.contains(ticket.score)
+        }
+        
+        return filtered
+    }
+    
+    func filter(searchText: String?) async -> Self {
+        guard let searchText, !searchText.isEmpty else {
+            return self
+        }
+        let lowercasedSearchText = searchText.lowercased()
+        
+        return self.filter {
+            $0.searchText.contains(lowercasedSearchText)
         }
     }
     
