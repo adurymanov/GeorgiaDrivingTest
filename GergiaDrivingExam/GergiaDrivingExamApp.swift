@@ -16,6 +16,6 @@ struct GeorgiaDrivingExamApp: App {
                 ContentView()
             }
         }
-        .modelContainer(try! DataController.previewContainer)
+        .modelContainer(try! DataController.appContainer)
     }
 }

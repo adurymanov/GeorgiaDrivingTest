@@ -34,7 +34,7 @@ struct CategoryScreen: View {
             }
             Section {
                 NavigationLink(
-                    "All tickets",
+                    "Tickets",
                     value: CategoryTicketsScreen.Data(category: category)
                 )
             }

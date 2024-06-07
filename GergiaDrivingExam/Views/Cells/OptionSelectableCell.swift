@@ -36,7 +36,7 @@ struct OptionSelectableCell: View {
             valueView
             Spacer()
         }
-        .padding()
+        .padding(8)
         .background(.thinMaterial)
         .background(highlighted ? configuration.highlightColor : .clear)
         .clipShape(RoundedRectangle(cornerRadius: 10))
