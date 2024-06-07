@@ -57,7 +57,7 @@ struct CategoryTicketsScreen: View {
                 }
             }
         })
-        .searchable(text: $searchText, placement: .navigationBarDrawer)
+        .searchable(text: $searchText)
         .toolbar {
             filtersButton
         }
@@ -131,7 +131,7 @@ struct CategoryTicketsScreen: View {
     
     var filtersButton: some View {
         NavigationLink(value: filter) {
-            Text("Filter")
+            Label("Filter", systemImage: filter.isEmpty ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
         }
     }
     
