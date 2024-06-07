@@ -5,12 +5,13 @@ struct TicketCell: View {
     let ticket: Ticket
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("#\(ticket.id)").font(.headline)
+        VStack(alignment: .leading, spacing: 8) {
+            Text("#\(ticket.id)").font(.title)
             if let imageUrl = ticket.imageUrl {
                 imageView(imageUrl)
             }
             Text(ticket.question)
+            Spacer().frame(height: .zero)
             ForEach(ticket.options, id: \.self) { option in
                 optionView(option)
             }
