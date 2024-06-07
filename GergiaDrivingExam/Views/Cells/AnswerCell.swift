@@ -5,14 +5,15 @@ struct AnswerCell: View {
     let answer: Answer
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 8) {
             Text("#\(ticket.id)")
-                .font(.headline)
+                .font(.title)
                 .foregroundStyle(isAnswerCorrect ? .green : .red)
             if let imageUrl = ticket.imageUrl {
-                TicketImageView(url: imageUrl)
+                imageView(imageUrl)
             }
             Text(ticket.question)
+            Spacer().frame(height: .zero)
             ForEach(options, id: \.value) { item in
                 optionView(
                     item.value,
@@ -41,6 +42,19 @@ struct AnswerCell: View {
             .background(.thinMaterial)
             .background(background)
             .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+    
+    private func imageView(_ url: URL?) -> some View {
+        AsyncImage(url: url) { content in
+            content
+                .image?
+                .resizable()
+                .scaledToFill()
+                .frame(alignment: .center)
+        }
+        .frame(width: 256, height: 128)
+        .clipped()
+        .clipShape(RoundedRectangle(cornerRadius: 8))
     }
     
     private func optionBackground(index: Int) -> Color {
