@@ -15,11 +15,13 @@ struct CategoryScreen: View {
         let category: Category
     }
     
+    @Query(sort: \Category.name) var categories: [Category]
+    
     @State private var ticketsByScore: [TicketScore: [Ticket]] = [:]
     
     @State private var ticketsChartData: [TicketsChartItem] = []
     
-    let category: Category
+    @State var category: Category
     
     init(
         data: Data
@@ -42,6 +44,9 @@ struct CategoryScreen: View {
         .task {
             prepareTickets()
         }
+        .toolbar {
+            setupMenu
+        }
         .navigationTitle(category.name)
         .navigationDestination(for: CategoryTicketsScreen.Data.self) { data in
             CategoryTicketsScreen(data: data)
@@ -62,6 +67,20 @@ struct CategoryScreen: View {
         .chartXScale(domain: Ticket.scores.map(scoreTitle(_:)))
         .chartYScale(domain: 0...1000)
         .padding(.vertical)
+    }
+    
+    private var setupMenu: some View {
+        Menu {
+            ForEach(categories) { category in
+                Button(category.name) {
+                    self.category = category
+                    prepareTickets()
+                }
+            }
+        } label: {
+            Label("Setup", systemImage: "gearshift.layout.sixspeed")
+        }
+
     }
     
     private func prepareTickets() {

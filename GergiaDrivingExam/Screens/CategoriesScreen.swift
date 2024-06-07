@@ -3,19 +3,31 @@ import SwiftData
 
 struct CategoriesScreen: View {
     
+    @AppStorage("selected_category_id") var selectedCategoryId: String?
+    
     @Query(sort: \Category.name) var categories: [Category]
     
     var body: some View {
-        List {
-            ForEach(categories) { category in
-                NavigationLink(value: CategoryScreen.Data(category: category)) {
-                    CategoryCell(category: category)
+        ScrollView {
+            LazyVStack {
+                ForEach(categories) { category in
+                    categoryCell(category)
                 }
             }
         }
+        .safeAreaPadding()
         .navigationTitle("Categories")
-        .navigationDestination(for: CategoryScreen.Data.self) { data in
-            CategoryScreen(data: data)
+    }
+    
+    private func categoryCell(_ category: Category) -> some View {
+        Button {
+            selectedCategoryId = category.id
+        } label: {
+            Text(category.name)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(16)
+                .background(.thinMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
         }
     }
     

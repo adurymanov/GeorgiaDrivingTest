@@ -10,10 +10,13 @@ import SwiftData
 
 @main
 struct GeorgiaDrivingExamApp: App {
+    
+    @State var navigationPath = NavigationPath()
+    
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-                ContentView()
+            NavigationStack(path: $navigationPath) {
+                ContentView(navigationPath: navigationPath)
             }
         }
         .modelContainer(try! DataController.appContainer)
