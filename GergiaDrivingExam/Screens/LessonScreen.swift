@@ -5,35 +5,78 @@ struct LessonScreen: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    @State private var navigationPath = NavigationPath()
+    @Environment(\.modelContext) private var modelContext
     
     @State private var answers = [Ticket: Answer]()
     
     @State private var tickets = [Ticket]()
+    
+    @State private var selection: Int = .zero
+    
+    @State private var help: Ticket?
+    
+    @State private var selectedOptionIndex: Int?
     
     let lesson: Lesson
     
     let finish: (Lesson) -> Void
     
     var body: some View {
-        NavigationStack(path: $navigationPath) {
-            Group {
-                if let ticket = tickets.first {
-                    rootTaskScreenView(ticket)
-                } else {
-                    noTicketsView
+        VStack {
+            TabView(selection: $selection) {
+                ForEach(Array(tickets.enumerated()), id: \.element.id) { (index, ticket) in
+                    LessonTaskView(
+                        ticket: ticket,
+                        answer: answers[ticket],
+                        onSelect: { answer in
+                            saveAnswer(ticket: ticket, answer: answer)
+                        }
+                    )
+                    .navigationTitle("#\(ticket.id)")
+                    .tag(index)
                 }
             }
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    closeButtonView
+            HStack {
+                if let selectedTicket {
+                    if answers[selectedTicket] != nil {
+                        nextButtonView
+                    } else {
+                        skipButtonView
+                    }
+                }
+            }
+        }
+        .tabViewStyle(.page(indexDisplayMode: .never))
+        .animation(.default, value: selection)
+        .overlay {
+            if tickets.isEmpty {
+                noTicketsView
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                closeButtonView
+            }
+            ToolbarItem(placement: .status) {
+                Text("\(selection + 1)/\(tickets.count)").monospaced()
+            }
+            if let selectedTicket {
+                ToolbarItem {
+                    helpButton(ticket: selectedTicket)
                 }
             }
         }
         .task {
             tickets = lesson.tickets
         }
+        .sheet(item: $help) { ticket in
+            NavigationStack {
+                LessonTaskHelpScreen(ticket: ticket)
+            }
+        }
     }
+    
+    // MARK: - Subviews
     
     private var noTicketsView: some View {
         VStack {
@@ -51,49 +94,77 @@ struct LessonScreen: View {
         }
     }
     
-    private func rootTaskScreenView(_ ticket: Ticket) -> some View {
-        LessonTaskScreen(
-            data: LessonTaskScreen.Data(
-                ticket: ticket,
-                answer: answers[ticket],
-                isLast: lesson.tickets.last == ticket
-            ),
-            navigate: navigation
-        )
-        .navigationDestination(for: LessonTaskScreen.Data.self) { data in
-            LessonTaskScreen(
-                data: data,
-                navigate: navigation
-            )
+    private var nextButtonView: some View {
+        Button {
+            nextTicket()
+        } label: {
+            Text(nextButtonTitle)
+                .frame(maxWidth: .infinity)
+                .padding(8)
         }
+        .buttonStyle(.borderedProminent)
+        .padding(.horizontal)
     }
     
-    private func navigation(_ trigger: LessonTaskScreen.NavigationTrigger) {
-        switch trigger {
-        case let .next(ticket, answer):
-            answer.lesson = lesson
-            answers[ticket] = answer
-            next(ticket: ticket)
-        case let .skip(ticket):
-            next(ticket: ticket)
+    private var skipButtonView: some View {
+        Button {
+            nextTicket()
+        } label: {
+            Text(skipButtonTitle)
+                .frame(maxWidth: .infinity)
+                .padding(8)
         }
+        .buttonStyle(.bordered)
+        .padding(.horizontal)
+        .foregroundStyle(.primary)
     }
     
-    private func next(ticket: Ticket) {
-        guard let indexOfTicket = tickets.firstIndex(of: ticket) else {
-            return
+    private func helpButton(ticket: Ticket) -> some View {
+        Button {
+            help = ticket
+        } label: {
+            Label("Help", systemImage: "questionmark.circle")
+        }
+        .disabled(ticket.explanation == nil)
+    }
+    
+    // MARK: - Values
+    
+    private var selectedTicket: Ticket? {
+        tickets.isEmpty ? nil : tickets[selection]
+    }
+    
+    private var isLast: Bool {
+        selection == tickets.count - 1
+    }
+    
+    private var skipButtonTitle: String {
+        isLast ? "Finish" : "Skip question"
+    }
+    
+    private var nextButtonTitle: String {
+        isLast ? "Finish" : "Next question"
+    }
+    
+    // MARK: - Actions
+    
+    private func saveAnswer(ticket: Ticket, answer: Answer) {
+        modelContext.insert(answer)
+        answer.ticket = ticket
+        
+        if answer.givenAnswer == ticket.rightAnswer {
+            ticket.increaseScore()
+        } else {
+            ticket.decreaseScore()
         }
         
-        if indexOfTicket < tickets.count - 1 {
-            let nextIndex = tickets.index(after: indexOfTicket)
-            let nextTicket = tickets[nextIndex]
-            let nextAnswer = answers[nextTicket]
-            
-            navigationPath.append(LessonTaskScreen.Data(
-                ticket: nextTicket,
-                answer: nextAnswer,
-                isLast: lesson.tickets.last == nextTicket
-            ))
+        answer.lesson = lesson
+        answers[ticket] = answer
+    }
+    
+    private func nextTicket() {
+        if selection < tickets.count - 1 {
+            selection += 1
         } else {
             finish(lesson)
         }
@@ -109,10 +180,10 @@ struct LessonScreen: View {
         date: .now
     )
     let tickets = [
-        Ticket.mock(id: "1"),
-        Ticket.mock(id: "2"),
-        Ticket.mock(id: "3"),
-        Ticket.mock(id: "4"),
+        Ticket.mock(id: "1", question: "Q1"),
+        Ticket.mock(id: "2", question: "Q2", explanation: nil),
+        Ticket.mock(id: "3", question: "Q3"),
+        Ticket.mock(id: "4", question: "Q4"),
     ]
     
     container.mainContext.insert(lesson)
@@ -122,9 +193,11 @@ struct LessonScreen: View {
     
     lesson.tickets = tickets
     
-    return LessonScreen(
-        lesson: lesson,
-        finish: { print($0) }
-    )
+    return NavigationStack {
+        LessonScreen(
+            lesson: lesson,
+            finish: { print($0) }
+        )
+    }
     .modelContainer(container)
 }

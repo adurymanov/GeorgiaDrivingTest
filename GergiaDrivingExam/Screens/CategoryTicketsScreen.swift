@@ -81,9 +81,11 @@ struct CategoryTicketsScreen: View {
             }
         }
         .fullScreenCover(item: $lessonScreen) { lesson in
-            LessonScreen(lesson: lesson) { lesson in
-                lessonScreen = nil
-                lessonSummaryScreen = lesson
+            NavigationStack {
+                LessonScreen(lesson: lesson) { lesson in
+                    lessonScreen = nil
+                    lessonSummaryScreen = lesson
+                }
             }
         }
         .fullScreenCover(item: $lessonSummaryScreen) { lesson in

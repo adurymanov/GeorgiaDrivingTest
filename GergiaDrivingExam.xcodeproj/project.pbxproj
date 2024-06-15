@@ -804,7 +804,7 @@
 		966DF0AA2C0B95D500A08E65 /* CategoriesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0A92C0B95D500A08E65 /* CategoriesScreen.swift */; };
 		966DF0AC2C0B95DD00A08E65 /* CategoryTicketsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0AB2C0B95DD00A08E65 /* CategoryTicketsScreen.swift */; };
 		966DF0AE2C0B95E800A08E65 /* TicketScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0AD2C0B95E800A08E65 /* TicketScreen.swift */; };
-		966DF0B02C0B9F4B00A08E65 /* LessonTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0AF2C0B9F4B00A08E65 /* LessonTaskScreen.swift */; };
+		966DF0B02C0B9F4B00A08E65 /* LessonTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0AF2C0B9F4B00A08E65 /* LessonTaskView.swift */; };
 		966DF0B42C0BC63700A08E65 /* OptionSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0B32C0BC63700A08E65 /* OptionSelectableCell.swift */; };
 		966DF0B62C0BCF6500A08E65 /* LessonTaskHelpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0B52C0BCF6500A08E65 /* LessonTaskHelpScreen.swift */; };
 		966DF0B92C0BCFF900A08E65 /* Ticket+ImageURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DF0B82C0BCFF900A08E65 /* Ticket+ImageURL.swift */; };
@@ -1632,7 +1632,7 @@
 		966DF0A92C0B95D500A08E65 /* CategoriesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesScreen.swift; sourceTree = "<group>"; };
 		966DF0AB2C0B95DD00A08E65 /* CategoryTicketsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTicketsScreen.swift; sourceTree = "<group>"; };
 		966DF0AD2C0B95E800A08E65 /* TicketScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketScreen.swift; sourceTree = "<group>"; };
-		966DF0AF2C0B9F4B00A08E65 /* LessonTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonTaskScreen.swift; sourceTree = "<group>"; };
+		966DF0AF2C0B9F4B00A08E65 /* LessonTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonTaskView.swift; sourceTree = "<group>"; };
 		966DF0B32C0BC63700A08E65 /* OptionSelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSelectableCell.swift; sourceTree = "<group>"; };
 		966DF0B52C0BCF6500A08E65 /* LessonTaskHelpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonTaskHelpScreen.swift; sourceTree = "<group>"; };
 		966DF0B82C0BCFF900A08E65 /* Ticket+ImageURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ticket+ImageURL.swift"; sourceTree = "<group>"; };
@@ -1685,6 +1685,14 @@
 				8004304A2C13622A00FAC9E0 /* TicketLastReviewDatRangeFixedPicker.swift */,
 			);
 			path = Pickers;
+			sourceTree = "<group>";
+		};
+		8040234E2C1E31180000AED5 /* Lesson */ = {
+			isa = PBXGroup;
+			children = (
+				966DF0AF2C0B9F4B00A08E65 /* LessonTaskView.swift */,
+			);
+			path = Lesson;
 			sourceTree = "<group>";
 		};
 		966DEA602C0A835000A08E65 = {
@@ -2556,6 +2564,7 @@
 		966DF0A02C0B949200A08E65 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8040234E2C1E31180000AED5 /* Lesson */,
 				800430472C1357B300FAC9E0 /* Pickers */,
 				966DF0D22C0CE2F200A08E65 /* Images */,
 				966DF0A12C0B949700A08E65 /* Cells */,
@@ -2582,7 +2591,6 @@
 				966DF0AB2C0B95DD00A08E65 /* CategoryTicketsScreen.swift */,
 				96796FE02C0E6C7A005D932F /* CategoryScreen.swift */,
 				966DF0AD2C0B95E800A08E65 /* TicketScreen.swift */,
-				966DF0AF2C0B9F4B00A08E65 /* LessonTaskScreen.swift */,
 				966DF0B52C0BCF6500A08E65 /* LessonTaskHelpScreen.swift */,
 				96796FD72C0CFC25005D932F /* LessonSetupScreen.swift */,
 				96796FD92C0D044E005D932F /* LessonScreen.swift */,
@@ -3532,7 +3540,7 @@
 				966DF0B42C0BC63700A08E65 /* OptionSelectableCell.swift in Sources */,
 				800430462C13281B00FAC9E0 /* TicketsFilterScreen.swift in Sources */,
 				966DF09B2C0B8F2100A08E65 /* Ticket.swift in Sources */,
-				966DF0B02C0B9F4B00A08E65 /* LessonTaskScreen.swift in Sources */,
+				966DF0B02C0B9F4B00A08E65 /* LessonTaskView.swift in Sources */,
 				966DEA6D2C0A835000A08E65 /* GergiaDrivingExamApp.swift in Sources */,
 				966DF09F2C0B8F2F00A08E65 /* Answer.swift in Sources */,
 				966DF0CF2C0CDD2800A08E65 /* TicketByCategoryDTOProvider.swift in Sources */,
