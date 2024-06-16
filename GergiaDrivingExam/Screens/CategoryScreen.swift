@@ -64,7 +64,7 @@ struct CategoryScreen: View {
             }
         }
         .animation(.default, value: ticketsChartData)
-        .chartXScale(domain: Ticket.scores.map(scoreTitle(_:)))
+        .chartXScale(domain: Ticket.scores.map(\.label))
         .chartYScale(domain: 0...1000)
         .padding(.vertical)
     }
@@ -89,7 +89,7 @@ struct CategoryScreen: View {
         let ticketsByScore = Dictionary(grouping: tickets, by: \.score)
         let ticketsChartData = ticketsByScore.map {
             TicketsChartItem(
-                x: scoreTitle($0.key),
+                x: $0.key.label,
                 y: $0.value.count,
                 score: $0.key
             )
@@ -105,15 +105,6 @@ struct CategoryScreen: View {
             .secondary
         case let .value(score):
             score < 0 ? .red : .green
-        }
-    }
-    
-    private func scoreTitle(_ score: TicketScore) -> String {
-        switch score {
-        case let .value(score):
-            String(score)
-        case .empty:
-            "-"
         }
     }
     

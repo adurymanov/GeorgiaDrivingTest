@@ -80,6 +80,24 @@ final class Ticket: Identifiable {
     
 }
 
+extension TicketScore {
+    
+    var label: String {
+        switch self {
+        case .empty: "-"
+        case .value(-3): "G"
+        case .value(-2): "F"
+        case .value(-1): "E"
+        case .value(0): "D"
+        case .value(1): "C"
+        case .value(2): "B"
+        case .value(3): "A"
+        default: "-"
+        }
+    }
+    
+}
+
 extension Array where Element == Ticket {
     
     func filter(using filter: TicketsFilter) async -> Self {

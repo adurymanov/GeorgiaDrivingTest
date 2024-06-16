@@ -18,20 +18,11 @@ struct TicketScoresPricker: View {
     }
     
     private func scoreCell(_ score: TicketScore) -> some View {
-        scoreTitle(score)
+        Text(score.label)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 16)
             .background(.thinMaterial)
             .background(scoreBackground(score))
-    }
-    
-    private func scoreTitle(_ score: TicketScore) -> Text {
-        switch score {
-        case .empty:
-            Text("-")
-        case let .value(int):
-            Text(int, format: .number)
-        }
     }
     
     private func scoreBackground(_ score: TicketScore) -> some View {
