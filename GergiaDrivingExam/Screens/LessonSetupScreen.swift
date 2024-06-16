@@ -42,8 +42,10 @@ struct LessonSetupScreen: View {
             formField(title: "Tickets count") {
                 TextField("Tickets count", value: $ticketsCount, format: .number)
             }
-            formField(title: "Filter") {
-                NavigationLink(filter.isEmpty ? "Empty filter" : "Some filter", value: filter)
+            Section {
+                NavigationLink(value: filter) {
+                    Label("Filters", systemImage: filter.isEmpty ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
+                }
             }
         }
         .overlay(alignment: .bottom) {
