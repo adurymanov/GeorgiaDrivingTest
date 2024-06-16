@@ -23,6 +23,8 @@ struct CategoryScreen: View {
     
     @State var category: Category
     
+    @State var isLoaded = false
+    
     init(
         data: Data
     ) {
@@ -43,6 +45,13 @@ struct CategoryScreen: View {
         }
         .task {
             prepareTickets()
+            await MainActor.run { isLoaded = true }
+        }
+        .onAppear {
+            Task {
+                guard isLoaded else { return }
+                prepareTickets()
+            }
         }
         .toolbar {
             setupMenu
