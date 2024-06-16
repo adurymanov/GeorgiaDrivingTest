@@ -29,6 +29,7 @@ struct LessonTaskView: View {
                 selectedOptionIndex = answer.givenAnswer
             }
         }
+        .sensoryFeedback(.impact, trigger: selectedOptionIndex)
     }
     
     private var options: Array<(offset: Int, element: String)> {
