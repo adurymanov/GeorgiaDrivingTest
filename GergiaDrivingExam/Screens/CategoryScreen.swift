@@ -15,7 +15,7 @@ struct CategoryScreen: View {
         let category: Category
     }
     
-    @Query(sort: \Category.name) var categories: [Category]
+    
     
     @State private var ticketsByScore: [TicketScore: [Ticket]] = [:]
     
@@ -70,17 +70,10 @@ struct CategoryScreen: View {
     }
     
     private var setupMenu: some View {
-        Menu {
-            ForEach(categories) { category in
-                Button(category.name) {
-                    self.category = category
-                    prepareTickets()
-                }
-            }
-        } label: {
-            Label("Setup", systemImage: "gearshift.layout.sixspeed")
-        }
-
+        CategorySelectionMenu(
+            category: $category,
+            select: prepareTickets
+        )
     }
     
     private func prepareTickets() {
@@ -105,6 +98,41 @@ struct CategoryScreen: View {
             .secondary
         case let .value(score):
             score < 0 ? .red : .green
+        }
+    }
+    
+}
+
+struct CategorySelectionMenu: View {
+    
+    @Environment(\.modelContext) private var context
+    
+    @State private var categories: [Category] = []
+    
+    @Binding var category: Category
+    
+    var select: () -> Void
+
+    var body: some View {
+        Menu {
+            ForEach(categories) { category in
+                Button(category.name) {
+                    self.category = category
+                    select()
+                }
+            }
+        } label: {
+            Label("Setup", systemImage: "gearshift.layout.sixspeed")
+        }
+        .task {
+            let fetchDescriptor = FetchDescriptor<Category>(
+                sortBy: [SortDescriptor(\.name)]
+            )
+            let categories = try? context.fetch(fetchDescriptor)
+            
+            await MainActor.run {
+                self.categories = categories ?? []
+            }
         }
     }
     

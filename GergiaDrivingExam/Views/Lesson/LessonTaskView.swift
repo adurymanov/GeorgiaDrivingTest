@@ -18,7 +18,6 @@ struct LessonTaskView: View {
                     TicketImageView(url: url)
                 }
                 VStack(alignment: .leading, spacing: 16) {
-//                    titleView
                     questionView
                     optionsSelectorView
                 }
@@ -54,6 +53,7 @@ struct LessonTaskView: View {
                     style: optionCellStyle(index: index),
                     highlighted: index == selectedOptionIndex
                 )
+                .contentTransition(.symbolEffect(.replace, options: .speed(10)))
             }
             .disabled(selectedOptionIndex != nil)
             .foregroundStyle(.primary)
