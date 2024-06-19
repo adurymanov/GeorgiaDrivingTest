@@ -40,7 +40,7 @@ struct CategoryTicketsScreen: View {
             startLessonButton
         }
         .task {
-            let tickets = await sortedTickets
+            let tickets = sortedTickets
             await MainActor.run {
                 self.tickets = tickets
             }
@@ -49,9 +49,7 @@ struct CategoryTicketsScreen: View {
             searchTask.task?.cancel()
             searchTask.task = Task {
                 try? await Task.sleep(for: .milliseconds(300))
-                let tickets = await Task.detached {
-                    await sortedTickets
-                }.value
+                let tickets = sortedTickets
                 await MainActor.run {
                     guard !Task.isCancelled else {
                         return
@@ -99,8 +97,8 @@ struct CategoryTicketsScreen: View {
     }
     
     var sortedTickets: [Ticket] {
-        get async {
-            await category
+        get {
+            category
                 .tickets
                 .filter(using: filter)
                 .filter(searchText: searchText)

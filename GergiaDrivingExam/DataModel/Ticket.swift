@@ -100,7 +100,7 @@ extension TicketScore {
 
 extension Array where Element == Ticket {
     
-    func filter(using filter: TicketsFilter) async -> Self {
+    func filter(using filter: TicketsFilter) -> Self {
         var filtered = [Ticket]()
         
         for ticket in self {
@@ -124,7 +124,7 @@ extension Array where Element == Ticket {
         return filtered
     }
     
-    func filter(searchText: String?) async -> Self {
+    func filter(searchText: String?) -> Self {
         guard let searchText, !searchText.isEmpty else {
             return self
         }

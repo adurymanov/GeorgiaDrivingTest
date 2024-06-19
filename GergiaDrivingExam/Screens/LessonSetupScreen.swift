@@ -89,7 +89,7 @@ struct LessonSetupScreen: View {
     }
     
     private func startLessonAction() async {
-        let tickets = await category
+        let tickets = category
             .tickets
             .filter(using: filter)
             .shuffled()
