@@ -15,8 +15,6 @@ struct CategoryScreen: View {
         let category: Category
     }
     
-    
-    
     @State private var ticketsByScore: [TicketScore: [Ticket]] = [:]
     
     @State private var ticketsChartData: [TicketsChartItem] = []
