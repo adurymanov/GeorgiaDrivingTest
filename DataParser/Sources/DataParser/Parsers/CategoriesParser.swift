@@ -1,8 +1,8 @@
 import Foundation
 
-struct CategoriesParser {
+public struct CategoriesParser {
 
-    func parse(in folder: URL, locales: [Locale]) -> [TicketCategory] {
+    public func parse(in folder: URL, locales: [Locale]) -> [TicketCategory] {
         let categoriesFolder = folder.appendingPathComponent("categories")
         var result = [String: [Locale: String]]()
         for locale in locales {
@@ -19,7 +19,7 @@ struct CategoriesParser {
         for (id, names) in categories {
             let name = LocalizedText(value: names.mapValues { $0 })
             let ticketCategory = TicketCategory(
-                id: id.sha256(), 
+                id: id, 
                 name: name
             )
             result[id] = ticketCategory

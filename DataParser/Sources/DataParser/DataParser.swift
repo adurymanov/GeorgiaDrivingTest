@@ -1,8 +1,8 @@
 import Foundation
 
-struct DataParser {
+public struct TicketsDataParser {
 
-    func parse(in rootFolder: URL) throws -> ParseResult {
+    public func parse(in rootFolder: URL) throws -> ParseResult {
         let categories = CategoriesParser().parse(
             in: rootFolder,
             locales: Locale.translatedLocales
@@ -26,5 +26,7 @@ struct DataParser {
             licenseCategories: Set(tickets.flatMap(\.licenseCategories)).sorted { $0.name < $1.name } 
         )
     }
+    
+    public init() {}
 
 }

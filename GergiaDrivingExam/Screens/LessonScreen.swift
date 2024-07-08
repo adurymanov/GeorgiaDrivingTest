@@ -152,7 +152,7 @@ struct LessonScreen: View {
         modelContext.insert(answer)
         answer.ticket = ticket
         
-        if answer.givenAnswer == ticket.rightAnswer {
+        if answer.givenAnswerId == ticket.rightOptionId {
             ticket.increaseScore()
         } else {
             ticket.decreaseScore()
@@ -180,10 +180,10 @@ struct LessonScreen: View {
         date: .now
     )
     let tickets = [
-        Ticket.mock(id: "1", question: "Q1"),
-        Ticket.mock(id: "2", question: "Q2", explanation: nil),
-        Ticket.mock(id: "3", question: "Q3"),
-        Ticket.mock(id: "4", question: "Q4"),
+        Ticket.mock(id: "1"),
+        Ticket.mock(id: "2"),
+        Ticket.mock(id: "3"),
+        Ticket.mock(id: "4"),
     ]
     
     container.mainContext.insert(lesson)

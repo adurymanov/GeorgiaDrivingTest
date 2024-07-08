@@ -12,12 +12,12 @@ struct AnswerCell: View {
             if let imageUrl = ticket.imageUrl {
                 imageView(imageUrl)
             }
-            Text(ticket.question)
+            Text(ticket.question.defaultValue)
             Spacer().frame(height: .zero)
-            ForEach(options, id: \.value) { item in
+            ForEach(options) { item in
                 optionView(
-                    item.value,
-                    background: optionBackground(index: item.index)
+                    item.text.defaultValue,
+                    background: optionBackground(optionId: item.id)
                 )
             }
         }
@@ -27,12 +27,12 @@ struct AnswerCell: View {
         answer.ticket!
     }
     
-    private var options: [(index: Int, value: String)] {
-        ticket.options.enumerated().map({ ($0, $1) })
+    private var options: [Option] {
+        ticket.options
     }
     
     private var isAnswerCorrect: Bool {
-        ticket.rightAnswer == answer.givenAnswer
+        ticket.rightOptionId == answer.givenAnswerId
     }
     
     private func optionView(_ value: String, background: Color) -> some View {
@@ -57,9 +57,9 @@ struct AnswerCell: View {
         .clipShape(RoundedRectangle(cornerRadius: 8))
     }
     
-    private func optionBackground(index: Int) -> Color {
-        let isCorrect = index == ticket.rightAnswer
-        let isHighlighted = index == ticket.rightAnswer || index == answer.givenAnswer
+    private func optionBackground(optionId: Option.ID) -> Color {
+        let isCorrect = optionId == ticket.rightOptionId
+        let isHighlighted = optionId == ticket.rightOptionId || optionId == answer.givenAnswerId
         
         return switch (isHighlighted, isCorrect) {
         case (true, false): .red.opacity(0.4)
@@ -70,16 +70,16 @@ struct AnswerCell: View {
     
 }
 
-#Preview {
-    let container = try! DataController.previewContainer
-    
-    let ticket = Ticket.mock()
-    let answer = Answer(id: "1", date: .now, givenAnswer: 0)
-    
-    container.mainContext.insert(ticket)
-    container.mainContext.insert(answer)
-    
-    answer.ticket = ticket
-    
-    return AnswerCell(answer: answer).padding()
-}
+//#Preview {
+//    let container = try! DataController.previewContainer
+//    
+//    let ticket = Ticket.mock()
+//    let answer = Answer(id: "1", date: .now, givenAnswerId: "0")
+//    
+//    container.mainContext.insert(ticket)
+//    container.mainContext.insert(answer)
+//    
+//    answer.ticket = ticket
+//    
+//    AnswerCell(answer: answer).padding()
+//}

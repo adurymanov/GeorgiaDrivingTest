@@ -3,7 +3,7 @@ import SwiftData
 
 struct LessonTaskView: View {
     
-    @State private var selectedOptionIndex: Int?
+    @State private var selectedOptionId: Option.ID?
     
     let ticket: Ticket
     
@@ -26,18 +26,18 @@ struct LessonTaskView: View {
         }
         .task {
             if let answer {
-                selectedOptionIndex = answer.givenAnswer
+                selectedOptionId = answer.givenAnswerId
             }
         }
-        .sensoryFeedback(.impact, trigger: selectedOptionIndex)
+        .sensoryFeedback(.impact, trigger: selectedOptionId)
     }
     
-    private var options: Array<(offset: Int, element: String)> {
-        Array(ticket.options.enumerated())
+    private var options: [Option] {
+        ticket.options
     }
     
     private var questionView: some View {
-        Text(ticket.question)
+        Text(ticket.question.defaultValue)
     }
     
     private var titleView: some View {
@@ -45,42 +45,42 @@ struct LessonTaskView: View {
     }
     
     private var optionsSelectorView: some View {
-        ForEach(options, id: \.element) { (index, option) in
+        ForEach(options) { option in
             Button {
-                select(index: index)
+                select(optionId: option.id)
             } label: {
                 OptionSelectableCell(
-                    value: option,
-                    style: optionCellStyle(index: index),
-                    highlighted: index == selectedOptionIndex
+                    value: option.text.defaultValue,
+                    style: optionCellStyle(optionId: option.id),
+                    highlighted: option.id == selectedOptionId
                 )
                 .contentTransition(.symbolEffect(.replace, options: .speed(10)))
             }
-            .disabled(selectedOptionIndex != nil)
+            .disabled(selectedOptionId != nil)
             .foregroundStyle(.primary)
         }
     }
     
-    private func optionCellStyle(index: Int) -> OptionSelectableCell.Style {
-        guard let selectedOptionIndex else { return .normal }
+    private func optionCellStyle(optionId: Option.ID) -> OptionSelectableCell.Style {
+        guard let selectedOptionId else { return .normal }
         
-        return if index == ticket.rightAnswer {
+        return if optionId == ticket.rightOptionId {
             .right
-        } else if index == selectedOptionIndex {
+        } else if optionId == selectedOptionId {
             .wrong
         } else {
             .normal
         }
     }
     
-    private func select(index: Int) {
-        guard selectedOptionIndex == nil else { return }
-        selectedOptionIndex = index
+    private func select(optionId: Option.ID) {
+        guard selectedOptionId == nil else { return }
+        selectedOptionId = optionId
         
         let answer = Answer(
             id: UUID().uuidString,
             date: .now,
-            givenAnswer: index
+            givenAnswerId: optionId
         )
         
         onSelect(answer)

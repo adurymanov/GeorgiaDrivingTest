@@ -1,6 +1,6 @@
-struct ParseResult {
-    let tickets: [Ticket]
-    let categories: [TicketCategory]
-    let explanations: [TicketExplanation]
-    let licenseCategories: [LicenseCategory]
+public struct ParseResult {
+    public let tickets: [Ticket]
+    public let categories: [TicketCategory]
+    public let explanations: [TicketExplanation]
+    public let licenseCategories: [LicenseCategory]
 }

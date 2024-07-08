@@ -11,6 +11,6 @@ public enum Locale: String, Hashable, CaseIterable, Sendable {
 
 extension Locale {
 
-    static let translatedLocales: [Locale] = [.ru, .en, .ka, .hy, .tr, .az]
+    public static let translatedLocales: [Locale] = [.ru, .en, .ka, .hy, .tr, .az]
 
 }

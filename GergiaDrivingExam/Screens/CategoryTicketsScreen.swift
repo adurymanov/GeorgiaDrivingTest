@@ -7,6 +7,8 @@ private final class TaskWrapper {
 
 struct CategoryTicketsScreen: View {
     
+    @Environment(\.modelContext) var modelContext
+    
     @State private var lessonSetupScreen: LessonSetupScreen.Data?
     
     @State private var lessonScreen: Lesson?
@@ -39,23 +41,11 @@ struct CategoryTicketsScreen: View {
             ticketsList
             startLessonButton
         }
-        .task {
-            let tickets = sortedTickets
-            await MainActor.run {
-                self.tickets = tickets
-            }
-        }
         .onChange(of: searchText, { oldValue, newValue in
             searchTask.task?.cancel()
             searchTask.task = Task {
                 try? await Task.sleep(for: .milliseconds(300))
-                let tickets = sortedTickets
-                await MainActor.run {
-                    guard !Task.isCancelled else {
-                        return
-                    }
-                    self.tickets = tickets
-                }
+                await fetchTickets()
             }
         })
         .searchable(text: $searchText)
@@ -93,6 +83,35 @@ struct CategoryTicketsScreen: View {
                 )
                 .closeButton()
             }
+        }
+        .task {
+             await fetchTickets()
+        }
+        .onAppear {
+            Task { await fetchTickets() }
+        }
+    }
+    
+    func fetchTickets() async {
+        let predicate = #Predicate<Ticket> { [categoryId = category.id] ticket in
+            ticket.categories.contains(where: { $0.id == categoryId })
+            && (searchText.isEmpty || ticket.searchText.contains(searchText))
+        }
+        let fetchDescriptor = FetchDescriptor(
+            predicate: predicate,
+            sortBy: [SortDescriptor(\.id)]
+        )
+        let tickets: [Ticket]
+        
+        do {
+            tickets = try modelContext.fetch(fetchDescriptor)
+        } catch {
+            print(error)
+            return
+        }
+        
+        await MainActor.run {
+            self.tickets = tickets
         }
     }
     

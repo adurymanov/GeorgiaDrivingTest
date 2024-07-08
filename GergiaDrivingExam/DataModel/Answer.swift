@@ -8,7 +8,7 @@ final class Answer {
     
     var date: Date
     
-    var givenAnswer: Int
+    var givenAnswerId: Option.ID
     
     @Relationship(inverse: \Ticket.givenAnswers) var ticket: Ticket?
     
@@ -17,11 +17,11 @@ final class Answer {
     init(
         id: String,
         date: Date,
-        givenAnswer: Int
+        givenAnswerId: Option.ID
     ) {
         self.id = id
         self.date = date
-        self.givenAnswer = givenAnswer
+        self.givenAnswerId = givenAnswerId
     }
     
 }

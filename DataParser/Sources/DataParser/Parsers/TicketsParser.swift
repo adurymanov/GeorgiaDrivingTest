@@ -1,6 +1,6 @@
 import Foundation
 
-struct TicketsParser {
+public struct TicketsParser {
 
     enum TicketsParserError: Error {
         case rightOptionNotFound(ticketId: Int)
@@ -30,7 +30,7 @@ struct TicketsParser {
         Dictionary(uniqueKeysWithValues: categories.map { ($0.name.value[.ka] ?? "", $0) })
     }
 
-    func parse(from folder: URL, for locales: [Locale]) throws -> [Ticket] { 
+    public func parse(from folder: URL, for locales: [Locale]) throws -> [Ticket] { 
         let ticketsFolder = folder.appendingPathComponent("tickets")
         var result = [Int: [Locale: TicketDTO]]()
         for locale in locales {
