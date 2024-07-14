@@ -17,12 +17,19 @@ struct CategoryTicketsScreen: View {
     
     @State private var filter = TicketsFilter(
         lastReviewDateRange: nil,
-        scores: []
+        scores: [],
+        categories: []
     )
     
     @State private var searchText: String = ""
     
     @State private var tickets: [Ticket] = []
+    
+    @State private var isLoaded: Bool = false
+    
+    @State private var isFilterChanged = false
+    
+    @State private var page = 0
 
     private var searchTask = TaskWrapper()
     
@@ -45,7 +52,8 @@ struct CategoryTicketsScreen: View {
             searchTask.task?.cancel()
             searchTask.task = Task {
                 try? await Task.sleep(for: .milliseconds(300))
-                await fetchTickets()
+                guard !Task.isCancelled else { return }
+                await fetch()
             }
         })
         .searchable(text: $searchText)
@@ -85,22 +93,50 @@ struct CategoryTicketsScreen: View {
             }
         }
         .task {
-             await fetchTickets()
+            guard !isLoaded else { return }
+            await fetch()
+            isLoaded = true
         }
         .onAppear {
-            Task { await fetchTickets() }
+            guard isLoaded else { return }
+            Task {
+                await fetch()
+            }
         }
     }
     
-    func fetchTickets() async {
-        let predicate = #Predicate<Ticket> { [categoryId = category.id] ticket in
+    func fetch() async {
+        page = .zero
+        Task.detached { [page] in
+            await fetchTickets(page: page, reset: true)
+        }
+    }
+    
+    func fetchNext() async {
+        page += 1
+        Task.detached { [page] in
+            await fetchTickets(page: page, reset: false)
+        }
+    }
+    
+    func fetchTickets(page: Int, reset: Bool) async {
+        let groupId = filter.categories.first
+        let categoryId = category.id
+        let searchText = self.searchText
+        
+        let predicate = #Predicate<Ticket> { ticket in
             ticket.categories.contains(where: { $0.id == categoryId })
             && (searchText.isEmpty || ticket.searchText.contains(searchText))
+            && (groupId == nil) || ticket.group?.id == groupId
         }
-        let fetchDescriptor = FetchDescriptor(
+        var fetchDescriptor = FetchDescriptor(
             predicate: predicate,
             sortBy: [SortDescriptor(\.id)]
         )
+        
+        fetchDescriptor.fetchLimit = 100
+        fetchDescriptor.fetchOffset = page * 100
+        
         let tickets: [Ticket]
         
         do {
@@ -111,7 +147,11 @@ struct CategoryTicketsScreen: View {
         }
         
         await MainActor.run {
-            self.tickets = tickets
+            if reset {
+                self.tickets = tickets
+            } else {
+                self.tickets += tickets
+            }
         }
     }
     
@@ -131,6 +171,11 @@ struct CategoryTicketsScreen: View {
                 ForEach(tickets) { ticket in
                     NavigationLink(value: ticket) {
                         TicketCell(ticket: ticket)
+                    }
+                }
+                Text("Loading..").onAppear {
+                    Task {
+                        await fetchNext()
                     }
                 }
             }

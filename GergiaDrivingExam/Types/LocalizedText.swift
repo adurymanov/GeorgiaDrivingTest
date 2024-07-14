@@ -9,7 +9,7 @@ extension LocalizedText {
     }
     
     var defaultValue: String {
-        value[.en] ?? ""
+        value[.ru] ?? ""
     }
     
 }

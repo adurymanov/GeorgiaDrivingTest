@@ -6,16 +6,35 @@ final class DataController {
     
     static var appContainer: ModelContainer {
         get throws {
-            let config = ModelConfiguration()
+            let store = Bundle.main.url(
+                forResource: "default",
+                withExtension: "store"
+            )!
+            
+            let fileManager = FileManager.default
+            
+            let destFile = fileManager.urls(
+                for: .documentDirectory,
+                in: .userDomainMask
+            )
+            .first!.appendingPathComponent("default.store")
+            
+            if !fileManager.fileExists(atPath: destFile.path()) {
+                try! fileManager.copyItem(at: store, to: destFile)
+            }
+            
+            let schema = Schema([
+                Ticket.self,
+                TicketsFilter.self
+            ])
+            let config = ModelConfiguration.init(
+                schema: schema,
+                url: destFile
+            )
             let container = try! ModelContainer(
                 for: Ticket.self, TicketsFilter.self,
                 configurations: config
             )
-            
-            if let newData = try parseTickets() {
-                try setup(context: container.mainContext, data: newData)
-            }
-            
             return container
         }
     }
@@ -27,10 +46,6 @@ final class DataController {
                 for: Ticket.self, TicketsFilter.self,
                 configurations: config
             )
-            
-            if let newData = try parseTickets() {
-                try setup(context: container.mainContext, data: newData)
-            }
             
             return container
         }
@@ -45,7 +60,7 @@ struct Metadata: Decodable {
     let version: String
 }
 
-private func parseTickets(fileManager: FileManager = .default, userDefaults: UserDefaults = .standard) throws -> ParseResult? {
+func parseTickets(fileManager: FileManager = .default, userDefaults: UserDefaults = .standard) async throws -> ParseResult? {
     guard let resourceFile = Bundle.main.url(forResource: "data", withExtension: "zip") else {
         return nil
     }
@@ -70,7 +85,7 @@ private func parseTickets(fileManager: FileManager = .default, userDefaults: Use
     return data
 }
 
-private func setup(context: ModelContext, data: ParseResult) throws {
+func setup(context: ModelContext, data: ParseResult) throws {
     let explanations = data.explanations.map {
         TicketExplanation(
             id: $0.id,
@@ -106,20 +121,22 @@ private func setup(context: ModelContext, data: ParseResult) throws {
         )
     }
     
-    for explanation in explanations {
-        context.insert(explanation)
-    }
-    for category in categories {
-        context.insert(category)
-    }
-    for licenseCategory in licenseCategories {
-        context.insert(licenseCategory)
-    }
-    for ticket in tickets {
-        context.insert(ticket)
-    }
-    for option in options {
-        context.insert(option)
+    try context.transaction {
+        for explanation in explanations {
+            context.insert(explanation)
+        }
+        for category in categories {
+            context.insert(category)
+        }
+        for licenseCategory in licenseCategories {
+            context.insert(licenseCategory)
+        }
+        for ticket in tickets {
+            context.insert(ticket)
+        }
+        for option in options {
+            context.insert(option)
+        }
     }
     
     let explanationsById = Dictionary(uniqueKeysWithValues: explanations.map({ ($0.id, $0) }))

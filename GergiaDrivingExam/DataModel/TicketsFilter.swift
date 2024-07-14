@@ -10,6 +10,8 @@ final class TicketsFilter {
     
     var scores: Set<TicketScore>
     
+    var categories: Set<TicketCategory.ID>
+    
     var lastReviewDateRange: ClosedRange<Date>? {
         get {
             guard let _lastReviewMinDate, let _lastReviewMaxDate else {
@@ -25,15 +27,20 @@ final class TicketsFilter {
     
     init(
         lastReviewDateRange: ClosedRange<Date>?,
-        scores: Set<TicketScore>
+        scores: Set<TicketScore>,
+        categories: Set<TicketCategory.ID>
     ) {
         self._lastReviewMinDate = lastReviewDateRange?.lowerBound
         self._lastReviewMaxDate = lastReviewDateRange?.upperBound
         self.scores = scores
+        self.categories = categories
     }
     
     var isEmpty: Bool {
-        scores.isEmpty && _lastReviewMinDate == nil && _lastReviewMaxDate == nil
+        scores.isEmpty 
+        && categories.isEmpty
+        && _lastReviewMinDate == nil
+        && _lastReviewMaxDate == nil
     }
     
 }

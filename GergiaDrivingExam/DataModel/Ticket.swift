@@ -126,6 +126,9 @@ extension Array where Element == Ticket {
             if !filter.scores.isEmpty {
                 isSelected = filter.scores.contains(ticket.score)
             }
+            if let group = filter.categories.first {
+                isSelected = group == ticket.group?.id
+            }
             
             if isSelected {
                 filtered.append(ticket)

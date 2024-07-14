@@ -123,7 +123,8 @@ struct LessonSetupScreen: View {
                 category: categories.first!,
                 filter: TicketsFilter(
                     lastReviewDateRange: nil,
-                    scores: []
+                    scores: [],
+                    categories: []
                 )
             ),
             navigate: { print($0) }

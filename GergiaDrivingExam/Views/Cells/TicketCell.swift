@@ -19,16 +19,9 @@ struct TicketCell: View {
     }
     
     private func imageView(_ url: URL?) -> some View {
-        AsyncImage(url: url) { content in
-            content
-                .image?
-                .resizable()
-                .scaledToFill()
-                .frame(alignment: .center)
-        }
-        .frame(width: 256, height: 128)
-        .clipped()
-        .clipShape(RoundedRectangle(cornerRadius: 8))
+        TicketImageView(url: url)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .disabled(true)
     }
     
     private func optionView(_ value: String) -> some View {

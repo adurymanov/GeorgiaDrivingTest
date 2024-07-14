@@ -16,6 +16,8 @@ struct ContentView: View {
     
     @State var categories: [Category] = []
     
+    @State var isLoaded = false
+    
     var body: some View {
         ZStack {
             if let selectedCategory {

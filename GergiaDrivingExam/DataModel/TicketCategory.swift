@@ -1,7 +1,7 @@
 import SwiftData
 
 @Model
-final class TicketCategory {
+final class TicketCategory: Identifiable {
     
     @Attribute(.unique) var id: String
     

@@ -21,10 +21,18 @@ struct LessonTaskHelpScreen: View {
     
     private var explanationView: some View {
         Group {
-            if let explanation = ticket.explanation {
-                Text(explanation.explanation.defaultValue)
-            } else {
-                Text("No explanation").foregroundStyle(.secondary)
+            VStack {
+                if let explanation = ticket.explanation {
+                    Text(explanation.explanation.defaultValue)
+                } else {
+                    Text("No explanation").foregroundStyle(.secondary)
+                }
+                if let summary = ticket.explanation?.simplified {
+                    Text(summary.defaultValue)
+                        .padding()
+                        .background(.thinMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
             }
         }
         .padding()

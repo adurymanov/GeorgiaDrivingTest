@@ -1,4 +1,4 @@
-public struct Ticket: Identifiable, Hashable {
+public struct Ticket: Identifiable, Hashable, Sendable {
     public let id: Int
     public let explanation: TicketExplanation?
     public let licenseCategories: [LicenseCategory]
